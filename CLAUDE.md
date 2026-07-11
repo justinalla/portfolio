@@ -16,6 +16,14 @@ npx --yes http-server . -p 8742
 
 Vérification de syntaxe du JS : `node --check js/main.js`.
 
+## Déploiement
+
+- Dépôt GitHub : https://github.com/justinalla/portfolio (branche `main`)
+- Site en ligne : https://justinalla.github.io/portfolio/ via GitHub Pages (build « legacy », branche `main`, racine `/`)
+- Chaque `git push` sur `main` redéploie automatiquement le site en ~1 minute — pousser, c'est publier.
+- GitHub CLI installé mais pas forcément dans le PATH de la session : utiliser `& "C:\Program Files\GitHub CLI\gh.exe"` si `gh` n'est pas reconnu. Compte authentifié : `justinalla`.
+- Le site étant servi sous le sous-chemin `/portfolio/`, garder tous les liens internes (pages, css, js) **relatifs** — jamais de chemins commençant par `/`.
+
 ## Architecture
 
 Cinq pages soeurs partageant la même structure ; `index.html` est la page d'entrée :
