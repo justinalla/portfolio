@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Travail — Justin Allaglo</title>
+<meta name="description" content="Six projets, six mondes : MaTontine, NOVA™, labo microbio virtuel, GBÈ, recherche produit & conformité DTC, BioStat. Filtrez par discipline.">
+<meta name="theme-color" content="#0E1626">
+<meta property="og:title" content="Travail — Justin Allaglo">
+<meta property="og:description" content="Six projets où le code, le commerce et la mémoire se croisent.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%230E1626'/%3E%3Ctext x='50' y='68' font-size='52' font-family='serif' fill='%23D9A521' text-anchor='middle'%3EJ.%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Aller au contenu</a>
+<div class="progress" aria-hidden="true"></div>
+
+<header>
+  <nav aria-label="Navigation principale">
+    <a class="sig" href="index.html">Justin Allaglo<span>.</span></a>
+    <ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="approche.html">Approche</a></li>
+      <li><a href="travail.html" class="active" aria-current="page">Travail</a></li>
+      <li><a href="outils.html">Outils</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+
+  <div class="page-hero wrap">
+    <div class="eyebrow mono rise d1">02 · Travail</div>
+    <h1 class="rise d2">Six projets, <em>un même geste</em>.</h1>
+    <p class="intro rise d3">Choisis un fil pour voir quels projets le partagent —
+    c'est là que la multidisciplinarité devient concrète.</p>
+  </div>
+
+  <section style="padding-top:44px">
+    <div class="wrap">
+
+      <div class="filters rise d4" id="filters" role="group" aria-label="Filtrer les projets par discipline">
+        <button class="chip active" data-f="all" aria-pressed="true">Tout</button>
+        <button class="chip" data-f="commerce" aria-pressed="false">Commerce</button>
+        <button class="chip" data-f="code" aria-pressed="false">Code</button>
+        <button class="chip" data-f="conformite" aria-pressed="false">Conformité</button>
+        <button class="chip" data-f="education" aria-pressed="false">Éducation</button>
+        <button class="chip" data-f="patrimoine" aria-pressed="false">Patrimoine</button>
+        <button class="chip" data-f="ia" aria-pressed="false">IA appliquée</button>
+      </div>
+
+      <div class="grid" id="grid">
+
+        <article class="card reveal" data-tags="code patrimoine">
+          <div class="kicker mono">
+            <svg class="icon sm" viewBox="0 0 26 26" aria-hidden="true"><rect x="7" y="2" width="12" height="22" rx="2.5"/><path d="M11 21h4"/></svg>
+            Mobile · Fintech
+          </div>
+          <h3>MaTontine</h3>
+          <div class="role">Conception & dev Flutter/Dart — solo</div>
+          <p>App de tontine pour le marché ouest-africain francophone. Numériser une institution
+          communautaire sans la dénaturer : c'est le projet où mes deux fils se croisent le plus nettement.</p>
+          <ul class="facts">
+            <li>Quatre modèles couverts : rotative à ordre fixe, rotative aux enchères, épargne-crédit, collecte journalière</li>
+            <li>Persistance hors-ligne (shared_preferences) — pensée pour une connectivité irrégulière</li>
+            <li>Partage des rapports de période via share_plus</li>
+            <li>Build APK release + installation ADB validés sur un i5-3210M / 4 Go de RAM</li>
+            <li>Dossier de présentation PDF de 10 pages, diagrammes SVG sur mesure</li>
+          </ul>
+          <div class="tags"><span class="tag">Flutter</span><span class="tag">Hors-ligne</span><span class="tag">Inclusion fin.</span></div>
+        </article>
+
+        <article class="card reveal" data-tags="commerce ia" style="--d:.08s">
+          <div class="kicker mono">
+            <svg class="icon sm" viewBox="0 0 26 26" aria-hidden="true"><path d="M3 8h20l-2 14H5L3 8Z"/><path d="M9 8a4 4 0 0 1 8 0"/></svg>
+            E-commerce DTC
+          </div>
+          <h3>NOVA<sup>™</sup></h3>
+          <div class="role">Marque, boutique Shopify & acquisition payante</div>
+          <p>Boutique DTC autour d'un clip magnétique pour cheveux (face-nova.com). Je tiens toute la
+          chaîne : produit, boutique, création publicitaire, analyse.</p>
+          <ul class="facts">
+            <li>Bundle pricing en GraphQL : remises automatiques à trois paliers</li>
+            <li>Sections Liquid sur mesure (thème Horizon) + barre d'achat collante avec synchro prix JS</li>
+            <li>Copy Meta en français, scripts UGC en voix off (voice design ElevenLabs)</li>
+            <li>Analyse CPM / CTR / ROAS comparée entre jeux d'annonces vidéo et image</li>
+            <li>Étude produit/marge menée sur le Mexique, risques COFEPRIS identifiés en amont</li>
+          </ul>
+          <div class="tags"><span class="tag">Shopify</span><span class="tag">Meta Ads</span><span class="tag">Liquid</span></div>
+        </article>
+
+        <article class="card reveal" data-tags="education code" style="--d:.12s">
+          <div class="kicker mono">
+            <svg class="icon sm" viewBox="0 0 26 26" aria-hidden="true"><path d="M10 3v7L4 21a2 2 0 0 0 2 3h14a2 2 0 0 0 2-3l-6-11V3"/><path d="M8 3h10"/></svg>
+            Edtech
+          </div>
+          <h3>Labo microbio virtuel</h3>
+          <div class="role">App web éducative — BTS / Licence / Master</div>
+          <p>Un laboratoire de microbiologie alimentaire simulé pour des étudiants sans accès à une vraie
+          paillasse : dilutions en série, calcul d'UFC/g, gestes du labo. Itéré entre une version quiz React
+          et une version simulation gestuelle, stabilisé sur une approche HTML/CDN autonome.</p>
+          <div class="tags"><span class="tag">React</span><span class="tag">Simulation</span><span class="tag">UFC/g</span></div>
+        </article>
+
+        <article class="card reveal" data-tags="patrimoine" style="--d:.16s">
+          <div class="kicker mono">
+            <svg class="icon sm" viewBox="0 0 26 26" aria-hidden="true"><path d="M4 4h9v18H6a2 2 0 0 1-2-2V4Z"/><path d="M22 4h-9v18h7a2 2 0 0 0 2-2V4Z"/></svg>
+            Récit · Édition
+          </div>
+          <h3>GBÈ & l'histoire régionale</h3>
+          <div class="role">Écriture longue + pipeline PDF sur mesure</div>
+          <p>Une novella de science-fiction dans un Cotonou inondé de 2061, bâtie autour de la profondeur du
+          Fon. Et un livre illustré de 25 pages sur l'histoire du terrorisme en Afrique de l'Ouest, avec
+          figures SVG maison et pipeline de rendu Playwright/pypdf (couverture + corps fusionnés).</p>
+          <div class="tags"><span class="tag">Fon</span><span class="tag">SVG</span><span class="tag">Playwright</span></div>
+        </article>
+
+        <article class="card reveal" data-tags="conformite commerce ia" style="--d:.2s">
+          <div class="kicker mono">
+            <svg class="icon sm" viewBox="0 0 26 26" aria-hidden="true"><path d="M13 2 4 6v6c0 6 4 10 9 12 5-2 9-6 9-12V6l-9-4Z"/><path d="m9 13 3 3 5-6"/></svg>
+            Veille · Réglementaire
+          </div>
+          <h3>Recherche produit & conformité DTC</h3>
+          <div class="role">Méthode de sélection + garde-fous légaux</div>
+          <p>Un workflow de recherche de produits gagnants (Meta Ad Library, TrendTrack, croisement dépense/
+          trafic) adossé à une grille de critères stricte. Et la lecture réglementaire qui va avec :
+          DGCCRF côté France, CPNP/Responsible Person en cosmétique UE, risques COFEPRIS repérés sur le Mexique.</p>
+          <div class="tags"><span class="tag">TrendTrack</span><span class="tag">DGCCRF</span><span class="tag">UE / CPNP</span></div>
+        </article>
+
+        <article class="card reveal" data-tags="education code ia" style="--d:.24s">
+          <div class="kicker mono">
+            <svg class="icon sm" viewBox="0 0 26 26" aria-hidden="true"><path d="M3 23V13M10 23V3M17 23v-7M24 23V9"/></svg>
+            Edtech · Data
+          </div>
+          <h3>BioStat</h3>
+          <div class="role">App Python / Streamlit — prototype</div>
+          <p>Une appli de biostatistique pour chercheurs non-spécialistes : panier de rapports cumulatif,
+          génération PDF via WeasyPrint, interprétation IA prévue dans une phase ultérieure. Même logique que
+          le reste — rendre accessible un savoir qui réclame d'habitude un expert.</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">WeasyPrint</span></div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-band">
+    <div class="wrap inner reveal">
+      <h2>Curieux des outils <em>derrière ces projets</em> ?</h2>
+      <a class="btn" href="outils.html">Voir les outils</a>
+    </div>
+  </div>
+
+</main>
+
+<footer class="wrap">
+  <span>© <span id="yr"></span> Justin ALLAGLO — Cotonou, Bénin</span>
+  <span class="mono">Fait à la main · indigo & laiton</span>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
