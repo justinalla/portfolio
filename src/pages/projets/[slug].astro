@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import ContactBand from '../../components/ContactBand.astro';
 import DataService from '../../components/DataService.astro';
+import ShopifyService from '../../components/ShopifyService.astro';
 import { projects, url, type Project } from '../../data/projects';
 export function getStaticPaths() { return projects.map(project => ({ params: { slug: project.slug }, props: { project } })); }
 interface Props { project: Project; }
@@ -21,7 +22,7 @@ const next = projects[(projects.findIndex(project => project.slug === p.slug) + 
       <img data-lightbox-image alt="" />
     </div>
   </dialog>}
-  {p.service ? <DataService project={p} /> : <section class="container case-study">
+  {p.slug === 'nova' ? <ShopifyService project={p} /> : p.service ? <DataService project={p} /> : <section class="container case-study">
     <aside class:list={['case-meta', p.color]} data-reveal><span class="eyebrow">MON RÔLE</span><p>{p.role}</p><span class="eyebrow">{p.inProgress ? 'CHOIX TECHNIQUES' : 'OUTILS UTILISÉS'}</span><div class="tags">{p.tech.map(tech => <span>{tech}</span>)}</div>{p.slug === 'nova' && <a class="text-link" href="https://face-nova.com" target="_blank" rel="noopener noreferrer">Boutique NOVA™ <span aria-hidden="true">↗</span></a>}<span class="case-mark" aria-hidden="true">{p.mark}</span></aside>
     <div class="case-body"><section data-reveal><span class="eyebrow">01 / LE BESOIN</span><h2>Le point de départ</h2><p>{p.problem}</p></section><section data-reveal><span class="eyebrow">02 / LES CHOIX</span><h2>{p.inProgress ? 'État d’avancement' : 'L’approche retenue'}</h2><p>{p.approach}</p></section><section data-reveal><span class="eyebrow">{p.inProgress ? '03 / LES PISTES DE TRAVAIL' : '03 / LA RÉALISATION'}</span><h2>{p.inProgress ? 'Les prochaines étapes envisagées' : 'Ce qui a été construit'}</h2><ul class="deliverables">{p.deliverables.map(item => <li>{item}</li>)}</ul>{p.note && <p class="case-note">{p.note}</p>}</section></div>
   </section>}

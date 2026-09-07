@@ -1,0 +1,39 @@
+---
+import { url, type Project } from '../data/projects';
+interface Props { project: Project; }
+const { project: p } = Astro.props;
+const services = [
+  ['01', 'Sections Liquid', 'Bannières, FAQ, tableaux comparatifs, galeries vidéo et blocs de réassurance : des sections pensées pour votre contenu et modifiables dans l’éditeur Shopify.'],
+  ['02', 'Pages produit', 'Présentation des bénéfices, variantes, informations de livraison et bouton d’achat fixe : un parcours clair, cohérent avec votre offre.'],
+  ['03', 'Expérience mobile', 'Mise en page responsive, lisibilité, navigation et optimisation des médias pour faciliter la découverte de vos produits.'],
+  ['04', 'Évolution & maintenance', 'Correction de bugs, adaptation de sections existantes et documentation pour faire évoluer votre boutique au fil de vos besoins.'],
+];
+const ai = [
+  ['Assistant avant-vente', 'Répondre aux questions sur les produits, la livraison et les retours à partir des informations validées de la boutique, avec relais vers votre équipe.'],
+  ['Conseil produit', 'Guider le visiteur selon ses besoins, comparer des articles et proposer des produits pertinents à partir du catalogue connecté.'],
+  ['Fiches produit & SEO', 'Préparer des descriptions, titres, FAQ et métadonnées cohérents avec votre marque, à relire avant publication.'],
+  ['Traduction & adaptation', 'Produire des brouillons multilingues pour les fiches produit et les contenus de la boutique, adaptés au marché visé.'],
+  ['Assistance au service client', 'Classer les demandes, résumer les échanges et préparer des réponses. Le suivi d’une commande nécessite une connexion autorisée et une vérification du client.'],
+  ['Analyse & reporting', 'Synthétiser les ventes, les questions fréquentes et les retours clients à partir des données disponibles, pour dégager des pistes d’amélioration.'],
+];
+---
+<section class="container data-intro" aria-labelledby="shopify-title">
+  <div data-reveal><span class="eyebrow">EXPERTISE SHOPIFY · CODE LIQUID</span><h2 id="shopify-title">Votre boutique.<br /><em>Votre identité.</em></h2></div>
+  <div data-reveal><p>{p.problem}</p><p>{p.approach}</p><a class="button" href={url('contact/')}>Parlons de votre boutique <span aria-hidden="true">↗</span></a></div>
+</section>
+<section class="container data-process" aria-labelledby="liquid-title">
+  <div class="section-heading" data-reveal><div><span class="eyebrow">DÉVELOPPEMENT SUR MESURE</span><h2 id="liquid-title">Un thème gratuit.<br /><em>Des possibilités sur mesure.</em></h2></div></div>
+  <div class="data-steps">{services.map(([n, title, description]) => <article data-reveal><span class="large-number">{n}</span><h3>{title}</h3><p>{description}</p></article>)}</div>
+  <p class="gallery-note">Aucun achat de thème premium n’est requis pour cette offre. L’abonnement Shopify, la prestation de développement et les éventuelles applications restent à prévoir selon vos besoins.</p>
+</section>
+<section class="container data-process" aria-labelledby="ai-title">
+  <div class="section-heading" data-reveal><div><span class="eyebrow">CHATGPT & CLAUDE · INTÉGRATIONS SUR MESURE</span><h2 id="ai-title">Une IA connectée<br /><em>aux besoins de votre boutique.</em></h2></div></div>
+  <p>Je propose des intégrations utilisant les modèles d’OpenAI et d’Anthropic via leurs API. Voici les fonctions que nous pouvons développer selon votre catalogue, vos outils et vos objectifs.</p>
+  <div class="data-steps">{ai.map(([title, description], i) => <article data-reveal><span class="large-number">0{i + 1}</span><h3>{title}</h3><p>{description}</p></article>)}</div>
+  <p class="gallery-note">Les fonctions sont définies et testées pour chaque mission. Les connexions, les accès aux données et les coûts d’usage des API sont précisés au devis. Les clés restent côté serveur ; les contenus et actions sensibles passent par une validation humaine.</p>
+</section>
+<section class="container data-delivery" aria-labelledby="delivery-title">
+  <div data-reveal><span class="eyebrow">LES LIVRABLES</span><h2 id="delivery-title">Une boutique que vous<br /><em>pouvez faire évoluer.</em></h2><p>Nous définissons les pages, les fonctionnalités et le calendrier avant de commencer. Une prévisualisation permet de valider les changements avant leur mise en ligne.</p></div>
+  <ul class="deliverables" data-reveal>{p.deliverables.map(item => <li>{item}</li>)}</ul>
+</section>
+<section class="container data-contact" data-reveal><div><span class="eyebrow">VOTRE PROJET SHOPIFY</span><h2>Qu’aimeriez-vous<br /><em>améliorer ?</em></h2><p>Partagez le lien de votre boutique, vos besoins en personnalisation et les tâches que vous souhaitez simplifier avec l’IA.</p></div><a class="button" href={url('contact/')}>Discuter de mon projet <span aria-hidden="true">↗</span></a></section>
