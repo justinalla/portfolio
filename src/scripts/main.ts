@@ -1,5 +1,39 @@
 import { animate, inView, stagger } from 'motion';
 
+const lightbox = document.querySelector<HTMLDialogElement>('[data-lightbox]');
+const lightboxImage = document.querySelector<HTMLImageElement>('[data-lightbox-image]');
+const lightboxTitle = document.querySelector<HTMLElement>('[data-lightbox-title]');
+const closeLightbox = document.querySelector<HTMLButtonElement>('[data-lightbox-close]');
+let lightboxOpener: HTMLAnchorElement | null = null;
+if (lightbox && lightboxImage && lightboxTitle && closeLightbox && typeof lightbox.showModal === 'function') {
+  document.querySelectorAll<HTMLAnchorElement>('[data-lightbox-trigger]').forEach(link => {
+    link.setAttribute('aria-haspopup', 'dialog');
+    link.addEventListener('click', event => {
+      if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.button !== 0) return;
+      event.preventDefault();
+      lightboxOpener = link;
+      lightboxImage.src = link.href;
+      lightboxImage.alt = link.querySelector('img')?.alt || '';
+      lightboxTitle.textContent = link.dataset.title || 'Capture de l’application';
+      lightbox.showModal();
+      document.documentElement.classList.add('overlay-open');
+      closeLightbox.focus();
+    });
+  });
+  closeLightbox.addEventListener('click', () => lightbox.close());
+  let backdropPressed = false;
+  lightbox.addEventListener('pointerdown', event => { backdropPressed = event.target === lightbox; });
+  lightbox.addEventListener('click', event => {
+    if (backdropPressed && event.target === lightbox) lightbox.close();
+    backdropPressed = false;
+  });
+  lightbox.addEventListener('close', () => {
+    document.documentElement.classList.remove('overlay-open');
+    lightboxOpener?.focus({ preventScroll: true });
+    lightboxImage.removeAttribute('src');
+  });
+}
+
 const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
 let motionAllowed = !motionPreference.matches;
 const runningAnimations: ReturnType<typeof animate>[] = [];
