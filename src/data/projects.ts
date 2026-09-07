@@ -3,18 +3,26 @@ export type Project = {
   color: string; tags: string[]; filters: string[]; summary: string; role: string;
   problem: string; approach: string; deliverables: string[]; tech: string[];
   note?: string;
+  screenshots?: { file: string; title: string; caption: string; alt: string }[];
 };
 
 export const projects: Project[] = [
   {
     slug: 'matontine', number: '01', name: 'MaTontine', category: 'Mobile · Inclusion financière', mark: 'Mt.', color: 'gold',
     tags: ['Flutter', 'Hors-ligne'], filters: ['code', 'patrimoine'],
-    summary: 'L’épargne collective, repensée pour tenir dans la poche. Quatre modèles de tontine dans une application hors-ligne.',
+    summary: 'Créer une tontine, suivre les cotisations et partager le bilan du tour. Une application mobile pensée pour l’épargne collective.',
     role: 'Conception et développement Flutter / Dart, en solo',
     problem: 'Comment numériser une pratique communautaire sans perdre ce qui fait sa force ? En Afrique de l’Ouest francophone, un outil de tontine doit aussi rester utilisable lorsque la connexion est irrégulière.',
-    approach: 'Réunir quatre modèles dans une seule application : tontine rotative à ordre fixe, rotative aux enchères, épargne-crédit et collecte journalière. Les données sont conservées localement et les rapports de période peuvent être partagés.',
-    deliverables: ['Application Flutter avec persistance locale', 'Quatre modèles de tontine couverts', 'Partage des rapports de période', 'APK release compilé et installation validée', 'Dossier de présentation de dix pages'],
+    approach: 'La version présentée permet de créer une tontine rotative à ordre fixe, de suivre les cotisations de chaque membre et de clôturer un tour. Un rapport réunit ensuite le bénéficiaire, le montant collecté et les contributions. L’application conserve les données localement et propose le partage du rapport en PDF ou en texte.',
+    deliverables: ['Application Flutter avec persistance locale', 'Création guidée : informations, calendrier, membres et résumé', 'Tontine rotative à ordre fixe et suivi des cotisations', 'Rapport de clôture avec partage en PDF ou en texte', 'APK release compilé et installation validée', 'Dossier de présentation de dix pages'],
     tech: ['Flutter', 'Dart', 'shared_preferences', 'share_plus'],
+    note: 'Version présentée : la tontine rotative à ordre fixe est disponible. Les autres modèles restent prévus ; les options aux enchères et épargne-crédit portent la mention « Bientôt ». Les noms et montants des captures appartiennent à un scénario de démonstration.',
+    screenshots: [
+      { file: 'accueil.png', title: 'Un point de départ clair', caption: 'L’accueil réunit le total collecté, les tontines actives et les membres. L’état vide invite à créer une première tontine.', alt: 'Accueil de MaTontine sans groupe créé, avec total de 0 FCFA et bouton Nouvelle tontine.' },
+      { file: 'creation.png', title: 'Une création guidée', caption: 'Le parcours annonce quatre étapes. La première définit le nom, le montant de cotisation, la pénalité de retard et le type de tontine.', alt: 'Formulaire de création de tontine : informations, calendrier, membres et résumé ; modèle rotatif à ordre fixe sélectionné.' },
+      { file: 'cotisations.png', title: 'Le tour, en un regard', caption: 'Le bénéficiaire, l’objectif de collecte et le statut de chaque membre sont visibles sur le même écran.', alt: 'Tour 1 de la tontine Demo, avec un objectif de 10 000 FCFA et deux membres qui n’ont pas encore cotisé.' },
+      { file: 'rapport.png', title: 'Un bilan à partager', caption: 'Après la clôture, le rapport détaille les contributions et propose un partage en PDF ou en texte.', alt: 'Rapport d’un tour clôturé : deux cotisants à 5 000 FCFA chacun et boutons de partage PDF et texte.' },
+    ],
   },
   {
     slug: 'nova', number: '02', name: 'NOVA™', category: 'E-commerce · Acquisition', mark: 'N.', color: 'clay',
