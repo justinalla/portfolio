@@ -4,9 +4,9 @@ interface Props { project: Project; }
 const { project: p } = Astro.props;
 ---
 <article class:list={['project-card', p.color]} data-project data-tags={p.filters.join(' ')} data-reveal>
-  <a href={url(`projets/${p.slug}/`)} class:list={['project-visual', { 'with-screenshots': !!p.screenshots }]} aria-label={`Découvrir le projet ${p.name}`}>
+  <a href={url(`projets/${p.slug}/`)} class:list={['project-visual', { 'with-screenshots': !!p.screenshots, 'with-chart': p.service }]} aria-label={`Découvrir ${p.name}`}>
     <span class="visual-top"><span>{p.category}</span><span>{p.number} / 06</span></span>
-    {p.screenshots ? <span class="card-screenshots" aria-hidden="true">{p.screenshots.slice(2).map(shot => <img src={url(`images/${p.slug}/${shot.file}`)} width="561" height="1280" alt="" loading="lazy" decoding="async" />)}</span> : <span class="project-mark" aria-hidden="true">{p.mark}</span>}
+    {p.service && p.screenshots ? <span class="card-chart" aria-hidden="true"><img src={url(`images/${p.slug}/${p.screenshots[0].file}`)} width={p.screenshots[0].width} height={p.screenshots[0].height} alt="" loading="lazy" decoding="async" /></span> : p.screenshots ? <span class="card-screenshots" aria-hidden="true">{p.screenshots.slice(2).map(shot => <img src={url(`images/${p.slug}/${shot.file}`)} width="561" height="1280" alt="" loading="lazy" decoding="async" />)}</span> : <span class="project-mark" aria-hidden="true">{p.mark}</span>}
     <span class="visual-bottom"><span>{p.tech.slice(0, 2).join(' / ')}</span><span class="circle-arrow" aria-hidden="true">↗</span></span>
   </a>
   <div class="project-copy">

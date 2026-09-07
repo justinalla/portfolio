@@ -77,7 +77,7 @@ filterButtons.forEach(button => button.addEventListener('click', () => {
     card.hidden = filter !== 'all' && !(card.dataset.tags || '').split(' ').includes(filter || '');
     if (!card.hidden) visible.push(card);
   });
-  if (results) results.textContent = `${visible.length} projet${visible.length > 1 ? 's' : ''}`;
+  if (results) results.textContent = `${visible.length} résultat${visible.length > 1 ? 's' : ''}`;
   if (motionAllowed) runningAnimations.push(animate(visible, { opacity: [0.4, 1], y: [12, 0] }, { duration: 0.32, delay: stagger(0.035) }));
   scheduleProgress();
 }));

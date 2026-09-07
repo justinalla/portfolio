@@ -4,7 +4,8 @@ export type Project = {
   problem: string; approach: string; deliverables: string[]; tech: string[];
   note?: string;
   inProgress?: boolean;
-  screenshots?: { file: string; title: string; caption: string; alt: string }[];
+  service?: boolean;
+  screenshots?: { file: string; title: string; caption: string; alt: string; width?: number; height?: number; label?: string }[];
 };
 
 export const projects: Project[] = [
@@ -49,15 +50,21 @@ export const projects: Project[] = [
     note: 'Projet en cours. Les éléments ci-dessus sont des pistes de travail, pas des fonctionnalités achevées ni une démonstration disponible.',
   },
   {
-    slug: 'biostat', number: '04', name: 'BioStat', category: 'Data · Outil scientifique', mark: 'B↗', color: 'blue',
-    tags: ['Python', 'Streamlit', 'Prototype'], filters: ['code', 'education', 'ia'],
-    summary: 'Rendre la biostatistique plus accessible aux chercheurs, avec des analyses réunies dans un rapport exportable.',
-    role: 'Développement d’un prototype Python / Streamlit',
-    problem: 'Un chercheur non spécialiste des statistiques a besoin d’un parcours compréhensible pour réunir ses analyses et produire un document exploitable.',
-    approach: 'Organiser les résultats dans un panier de rapports cumulatif et préparer leur génération en PDF. L’interprétation assistée par IA est envisagée dans une phase ultérieure.',
-    deliverables: ['Prototype d’application Streamlit', 'Panier de rapports cumulatif', 'Génération PDF avec WeasyPrint'],
-    tech: ['Python', 'Streamlit', 'WeasyPrint'],
-    note: 'Prototype. L’interprétation par IA est prévue, elle n’est pas présentée comme une fonctionnalité déjà disponible.',
+    slug: 'biostat', number: '04', name: 'Analyse de données scientifiques', category: 'Data · Accompagnement', mark: 'D.', color: 'blue',
+    service: true,
+    tags: ['Analyse de données', 'Visualisation', 'Rapport'], filters: ['data'],
+    summary: 'Du fichier brut au rapport commenté : je vous accompagne dans la préparation, l’exploration et l’analyse de vos données scientifiques.',
+    role: 'Accompagnement en analyse de données',
+    problem: 'Vous disposez de données issues d’une étude, d’une enquête ou d’un suivi expérimental et souhaitez les transformer en résultats compréhensibles.',
+    approach: 'Nous définissons la question à étudier, examinons la qualité des données et choisissons les méthodes adaptées. Les résultats sont restitués avec des graphiques lisibles, une interprétation et les limites de l’analyse.',
+    deliverables: ['Un fichier de données préparé, avec les traitements documentés', 'Des tableaux de synthèse et des graphiques légendés', 'Les résultats des analyses convenues et leur interprétation', 'Un rapport adapté à votre étude et à votre public'],
+    tech: ['Préparation', 'Statistiques', 'Visualisation'],
+    screenshots: [
+      { file: 'relations-variables.png', width: 1695, height: 1482, label: 'EXPLORATION', title: 'Explorer les relations entre variables', caption: 'Une matrice de nuages de points réunit l’âge, le poids et l’activité physique, avec une distinction par sexe. Elle permet d’examiner les distributions et de repérer des relations possibles à approfondir.', alt: 'Matrice de graphiques présentant les relations entre âge, poids et activité physique, avec deux groupes distingués par couleur.' },
+      { file: 'distribution-activite.png', width: 444, height: 434, label: 'DISTRIBUTION', title: 'Comprendre la répartition des valeurs', caption: 'L’histogramme présente la fréquence des durées d’activité physique. La courbe superposée aide à lire la forme de la distribution avant de choisir les analyses à mener.', alt: 'Histogramme de l’activité physique en heures par semaine, avec une courbe de densité superposée.' },
+      { file: 'comparaison-groupes.png', width: 2048, height: 1187, label: 'COMPARAISON', title: 'Mettre les groupes en perspective', caption: 'Les barres regroupées mettent côte à côte les pourcentages affichés pour les groupes Djallonké, Sahéliens et Croisé. Une interprétation complète demande de préciser les modalités et les effectifs de chaque groupe.', alt: 'Diagramme à barres comparant des pourcentages de caractéristiques de robe, peau et poil entre trois groupes.' },
+      { file: 'distribution-poids.png', width: 1580, height: 1180, label: 'CONTRÔLE DES DONNÉES', title: 'Examiner les données après préparation', caption: 'Cette distribution du poids, intitulée « après nettoyage », illustre une étape de contrôle visuel. Les règles de nettoyage doivent être documentées pour comprendre les données conservées et les traitements effectués.', alt: 'Histogramme du poids en kilogrammes après nettoyage, avec les fréquences par intervalle.' },
+    ],
   },
   {
     slug: 'gbe', number: '05', name: 'GBÈ & récits', category: 'Patrimoine · Édition', mark: 'Gb.', color: 'clay',
@@ -83,7 +90,7 @@ export const projects: Project[] = [
 ];
 
 export const filters = [
-  ['all', 'Tous les projets'], ['code', 'Code'], ['commerce', 'Commerce'],
+  ['all', 'Tout'], ['data', 'Analyse de données'], ['code', 'Code'], ['commerce', 'Commerce'],
   ['education', 'Éducation'], ['patrimoine', 'Patrimoine'], ['conformite', 'Veille'], ['ia', 'IA appliquée'],
 ];
 

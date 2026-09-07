@@ -1,0 +1,29 @@
+---
+import { url, type Project } from '../data/projects';
+interface Props { project: Project; }
+const { project: p } = Astro.props;
+const steps = [
+  ['01', 'Préparer', 'Vérifier les formats, les valeurs manquantes et les observations atypiques. Documenter les traitements pour conserver une trace claire des choix effectués.'],
+  ['02', 'Explorer', 'Résumer les variables, examiner leurs distributions et représenter leurs relations. Faire émerger les questions à approfondir.'],
+  ['03', 'Analyser', 'Comparer des groupes ou étudier des associations avec des méthodes adaptées à la question, aux données et aux conditions d’application.'],
+  ['04', 'Restituer', 'Présenter des graphiques lisibles et un rapport commenté, en expliquant ce que les résultats permettent de dire et leurs limites.'],
+];
+---
+<section class="container data-intro" aria-labelledby="offer-title">
+  <div data-reveal><span class="eyebrow">POUR VOTRE ÉTUDE</span><h2 id="offer-title">Des données à comprendre.<br /><em>Une démarche à construire.</em></h2></div>
+  <div data-reveal><p>{p.problem}</p><p>{p.approach}</p><a class="button" href={url('contact/')}>Discuter de votre étude <span aria-hidden="true">↗</span></a></div>
+</section>
+<section class="container data-process" aria-labelledby="process-title">
+  <div class="section-heading" data-reveal><div><span class="eyebrow">L’ACCOMPAGNEMENT</span><h2 id="process-title">Du fichier brut<br /><em>au résultat expliqué.</em></h2></div></div>
+  <div class="data-steps">{steps.map(([n, title, description]) => <article data-reveal><span class="large-number">{n}</span><h3>{title}</h3><p>{description}</p></article>)}</div>
+</section>
+<section class="container data-gallery-section" aria-labelledby="examples-title">
+  <div class="section-heading" data-reveal><div><span class="eyebrow">EXEMPLES DE VISUALISATIONS</span><h2 id="examples-title">Rendre les données<br /><em>plus lisibles.</em></h2></div><p class="gallery-hint">Cliquez sur un graphique<br />pour l’afficher en grand.</p></div>
+  <div class="data-chart-gallery">{p.screenshots?.map(shot => <figure data-reveal><a class="data-chart-link" href={url(`images/${p.slug}/${shot.file}`)} data-lightbox-trigger data-title={shot.title} aria-label={`${shot.title} — agrandir le graphique`}><img src={url(`images/${p.slug}/${shot.file}`)} width={shot.width} height={shot.height} alt={shot.alt} loading="lazy" decoding="async" /></a><figcaption><span class="eyebrow">{shot.label}</span><h3>{shot.title}</h3><p>{shot.caption}</p></figcaption></figure>)}</div>
+  <p class="gallery-note">Ces visuels illustrent des formats d’exploration et de restitution. Les jeux de données et protocoles d’origine ne sont pas présentés ici ; aucune conclusion clinique ou causale n’est tirée de ces captures.</p>
+</section>
+<section class="container data-delivery" aria-labelledby="delivery-title">
+  <div data-reveal><span class="eyebrow">LES LIVRABLES</span><h2 id="delivery-title">Un travail que vous<br /><em>pouvez exploiter.</em></h2><p>Le périmètre, les formats et le calendrier sont définis ensemble au début de la mission.</p></div>
+  <ul class="deliverables" data-reveal>{p.deliverables.map(item => <li>{item}</li>)}</ul>
+</section>
+<section class="container data-contact" data-reveal><div><span class="eyebrow">PARLONS DE VOS DONNÉES</span><h2>Quelle question<br /><em>souhaitez-vous éclairer ?</em></h2><p>Présentez le sujet de votre étude, le type de données, votre objectif et votre échéance.</p></div><a class="button" href={url('contact/')}>Discuter de votre étude <span aria-hidden="true">↗</span></a></section>

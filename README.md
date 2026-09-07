@@ -38,4 +38,6 @@ Un modèle est fourni dans `docs/github-pages-actions.yml`. Il est inactif pour 
 
 ## Contenus
 
+La route historique `/projets/biostat/` présente désormais l’offre « Analyse de données scientifiques », avec quatre graphiques fournis par le propriétaire et une ouverture en overlay. Les sources des données et les protocoles ne sont pas documentés dans les captures ; les légendes décrivent les méthodes visuelles et ne revendiquent pas de résultat clinique ou causal. Les images originales sont conservées sans retouche dans `public/images/biostat/`. Les autres captures reçues ne sont pas publiées dans cette sélection.
+
 MaTontine présente quatre captures réelles fournies par le propriétaire, dans `public/images/matontine/`. Les images sont conservées sans retouche ; les noms et montants affichés relèvent de la démonstration. Le texte distingue les fonctionnalités visibles des modèles annoncés « Bientôt ». Les autres projets conservent des monogrammes typographiques. Aucun résultat commercial, témoignage ou portrait n'a été inventé. Contact par e-mail avec bouton de copie. Polices Google Fonts avec polices de secours ; aucun outil de suivi.
