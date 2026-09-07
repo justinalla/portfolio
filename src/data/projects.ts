@@ -3,6 +3,7 @@ export type Project = {
   color: string; tags: string[]; filters: string[]; summary: string; role: string;
   problem: string; approach: string; deliverables: string[]; tech: string[];
   note?: string;
+  inProgress?: boolean;
   screenshots?: { file: string; title: string; caption: string; alt: string }[];
 };
 
@@ -37,13 +38,15 @@ export const projects: Project[] = [
   },
   {
     slug: 'labo-microbio', number: '03', name: 'Labo microbio virtuel', category: 'Éducation · Sciences', mark: 'μ.', color: 'blue',
-    tags: ['Simulation', 'Microbiologie'], filters: ['code', 'education'],
-    summary: 'Explorer les gestes du laboratoire, les dilutions et les calculs d’UFC/g, même sans accès à une paillasse.',
-    role: 'Conception d’une application web éducative',
+    inProgress: true,
+    tags: ['En cours', 'Microbiologie'], filters: ['code', 'education'],
+    summary: 'Projet de laboratoire virtuel pour l’apprentissage de la microbiologie. En cours de développement, à un stade préliminaire.',
+    role: 'Conception d’un projet d’application web éducative',
     problem: 'Les étudiants en microbiologie n’ont pas toujours accès au matériel nécessaire pour répéter les manipulations et s’approprier les calculs du laboratoire.',
-    approach: 'Explorer une première version en quiz React, puis une simulation centrée sur les gestes. Le projet a évolué vers une approche HTML/CDN pour alléger l’environnement technique.',
-    deliverables: ['Simulation de dilutions en série', 'Travail sur le calcul d’UFC/g', 'Parcours autour des gestes du laboratoire', 'Itérations entre quiz et simulation'],
-    tech: ['HTML', 'JavaScript', 'React', 'CDN'],
+    approach: 'Le projet est encore à un stade préliminaire, sans avancée majeure à présenter. L’objectif est d’explorer un support pédagogique autour des gestes du laboratoire. Le périmètre et les choix techniques restent à préciser.',
+    deliverables: ['Définir le parcours pédagogique et les besoins des étudiants', 'Explorer des exercices sur les dilutions et le calcul d’UFC/g', 'Préciser les gestes à représenter et les choix techniques'],
+    tech: ['À définir'],
+    note: 'Projet en cours. Les éléments ci-dessus sont des pistes de travail, pas des fonctionnalités achevées ni une démonstration disponible.',
   },
   {
     slug: 'biostat', number: '04', name: 'BioStat', category: 'Data · Outil scientifique', mark: 'B↗', color: 'blue',
