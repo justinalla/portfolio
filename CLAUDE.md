@@ -1,4 +1,6 @@
-# CLAUDE.md
+# CLAUDE.md — architecture historique
+
+> Mise à jour : le portfolio utilise désormais Astro, TypeScript et Motion. Les instructions actives sont dans `README.md`. Modifier les sources dans `src/`, puis exécuter `npm run publish:prepare` avant de committer. GitHub Pages publie toujours `main` à la racine. Les indications ci-dessous décrivent la version HTML historique et ne doivent plus guider les modifications de code.
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 

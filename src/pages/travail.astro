@@ -1,0 +1,15 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import ContactBand from '../components/ContactBand.astro';
+import { projects, filters } from '../data/projects';
+---
+<Layout title="Projets — Justin Allaglo" active="travail/" description="Six projets de Justin Allaglo : applications mobile, e-commerce, microbiologie, analyse de données, écriture et recherche produit.">
+  <section class="page-hero container"><span class="eyebrow" data-intro>LE TRAVAIL / 06 PROJETS</span><h1 data-intro>Plusieurs disciplines.<br /><em>Un même engagement.</em></h1><p data-intro>Du mobile aux sciences, chaque projet commence par un besoin concret. Explorez les choix, les outils et les livrables derrière chacun.</p></section>
+  <section class="container project-section">
+    <div class="filters" role="group" aria-label="Filtrer les projets" data-filters hidden>{filters.map(([value, label]) => <button type="button" data-filter={value} aria-pressed={value === 'all'}>{label}</button>)}</div>
+    <p class="result-count" role="status" aria-live="polite" data-results>6 projets</p>
+    <div class="projects-grid">{projects.map(project => <ProjectCard project={project} />)}</div>
+  </section>
+  <ContactBand />
+</Layout>

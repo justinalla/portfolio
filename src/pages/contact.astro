@@ -1,0 +1,12 @@
+---
+import Layout from '../layouts/Layout.astro';
+const email = 'justinallaglocareer@gmail.com';
+---
+<Layout title="Contact — Justin Allaglo" active="contact/" description="Parlons de votre projet : développement, e-commerce ou outils scientifiques. Justin Allaglo, basé à Cotonou et disponible pour des collaborations à distance.">
+  <section class="page-hero container contact-hero"><span class="eyebrow" data-intro>LE CONTACT / TOUT COMMENCE PAR UN ÉCHANGE</span><h1 data-intro>Votre prochain projet<br /><em>commence ici.</em></h1><p data-intro>Une application à construire, une boutique à améliorer, un outil pédagogique à imaginer ? Racontez-moi le besoin.</p></section>
+  <section class="container contact-grid">
+    <div class="email-panel" data-reveal><span class="eyebrow">ÉCRIVEZ-MOI</span><a class="email-address" href={`mailto:${email}`}>{email}<span aria-hidden="true">↗</span></a><div class="email-actions"><a class="button" href={`mailto:${email}?subject=Parlons%20de%20mon%20projet`}>Ouvrir ma messagerie <span aria-hidden="true">↗</span></a><button type="button" class="copy-button" data-copy={email}>Copier l’adresse</button></div><p class="copy-status" role="status" aria-live="polite" data-copy-status></p><p class="contact-hint">Quelques lignes suffisent : le contexte, votre objectif et votre échéance.</p></div>
+    <dl class="contact-details" data-reveal><div><dt>OÙ</dt><dd>Cotonou, Bénin<br /><span>UTC+1 · Collaboration à distance</span></dd></div><div><dt>LANGUES</dt><dd>Français · Fon</dd></div><div><dt>DOMAINES</dt><dd>Web & mobile<br />E-commerce<br />Outils scientifiques & pédagogiques</dd></div></dl>
+  </section>
+  <section class="container section"><div class="section-heading" data-reveal><div><span class="eyebrow">ET ENSUITE ?</span><h2>Un premier échange.<br /><em>Une direction claire.</em></h2></div></div><div class="contact-steps"><article data-reveal><span class="large-number">01</span><h3>Vous posez le contexte</h3><p>Le besoin, les contraintes et l’échéance. Pas besoin d’un cahier des charges complet pour commencer.</p></article><article data-reveal><span class="large-number">02</span><h3>Nous précisons le besoin</h3><p>Un échange pour comprendre les priorités et identifier une première approche adaptée.</p></article><article data-reveal><span class="large-number">03</span><h3>Un premier livrable</h3><p>Prototype, audit ou dossier : nous définissons une étape concrète pour valider la direction.</p></article></div></section>
+</Layout>

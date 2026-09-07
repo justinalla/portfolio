@@ -1,0 +1,18 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ContactBand from '../../components/ContactBand.astro';
+import { projects, url, type Project } from '../../data/projects';
+export function getStaticPaths() { return projects.map(project => ({ params: { slug: project.slug }, props: { project } })); }
+interface Props { project: Project; }
+const { project: p } = Astro.props;
+const next = projects[(projects.findIndex(project => project.slug === p.slug) + 1) % projects.length];
+---
+<Layout title={`${p.name} — Projet de Justin Allaglo`} description={p.summary} active="travail/">
+  <section class="page-hero container project-hero"><a class="back-link" href={url('travail/')}>← Tous les projets</a><span class="eyebrow" data-intro>{p.number} / {p.category}</span><h1 data-intro>{p.name}<em>.</em></h1><p data-intro>{p.summary}</p><div class="tags" data-intro>{p.tags.map(tag => <span>{tag}</span>)}</div></section>
+  <section class="container case-study">
+    <aside class:list={['case-meta', p.color]} data-reveal><span class="eyebrow">MON RÔLE</span><p>{p.role}</p><span class="eyebrow">OUTILS UTILISÉS</span><div class="tags">{p.tech.map(tech => <span>{tech}</span>)}</div>{p.slug === 'nova' && <a class="text-link" href="https://face-nova.com" target="_blank" rel="noopener noreferrer">Boutique NOVA™ <span aria-hidden="true">↗</span></a>}<span class="case-mark" aria-hidden="true">{p.mark}</span></aside>
+    <div class="case-body"><section data-reveal><span class="eyebrow">01 / LE BESOIN</span><h2>Le point de départ</h2><p>{p.problem}</p></section><section data-reveal><span class="eyebrow">02 / LES CHOIX</span><h2>L’approche retenue</h2><p>{p.approach}</p></section><section data-reveal><span class="eyebrow">03 / LA RÉALISATION</span><h2>Ce qui a été construit</h2><ul class="deliverables">{p.deliverables.map(item => <li>{item}</li>)}</ul>{p.note && <p class="case-note">{p.note}</p>}</section></div>
+  </section>
+  <div class="container next-project" data-reveal><span class="eyebrow">PROJET SUIVANT</span><a href={url(`projets/${next.slug}/`)}>{next.name}<span aria-hidden="true">↗</span></a></div>
+  <ContactBand />
+</Layout>

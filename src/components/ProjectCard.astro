@@ -1,0 +1,17 @@
+---
+import { url, type Project } from '../data/projects';
+interface Props { project: Project; }
+const { project: p } = Astro.props;
+---
+<article class:list={['project-card', p.color]} data-project data-tags={p.filters.join(' ')} data-reveal>
+  <a href={url(`projets/${p.slug}/`)} class="project-visual" aria-label={`Découvrir le projet ${p.name}`}>
+    <span class="visual-top"><span>{p.category}</span><span>{p.number} / 06</span></span>
+    <span class="project-mark" aria-hidden="true">{p.mark}</span>
+    <span class="visual-bottom"><span>{p.tech.slice(0, 2).join(' / ')}</span><span class="circle-arrow" aria-hidden="true">↗</span></span>
+  </a>
+  <div class="project-copy">
+    <h3><a href={url(`projets/${p.slug}/`)}>{p.name}</a></h3>
+    <p>{p.summary}</p>
+    <div class="tags">{p.tags.map(tag => <span>{tag}</span>)}</div>
+  </div>
+</article>
