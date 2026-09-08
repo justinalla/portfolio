@@ -425,3 +425,27 @@ nav .nav-contact:hover, nav .nav-contact.selected { border-color: var(--gold); }
   .container { width: 100%; }
   .project-card, .case-body section { break-inside: avoid; }
 }
+
+/* Material-inspired surfaces and state feedback, matched to the portfolio palette. */
+.ui-icon { display: inline-block; flex-shrink: 0; vertical-align: middle; }
+.button { border-radius: 999px; position: relative; overflow: hidden; isolation: isolate; transition: background .2s, transform .2s, box-shadow .2s; }
+.button::before { content: ''; position: absolute; inset: 0; background: currentColor; opacity: 0; pointer-events: none; transition: opacity .2s; }
+.button:hover { box-shadow: 0 5px 18px #0003; }
+.button:active { transform: scale(.98); }
+.button:active::before { opacity: .12; }
+.index-number { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.index-number > .ui-icon { width: 28px; height: 28px; }
+.index-project { border-radius: 16px; padding-inline: 12px; transition: background .2s; }
+.index-project:hover, .index-project:focus-visible { background: #d5ac6810; }
+.card-category { display: inline-flex; align-items: center; gap: 8px; }
+.card-category .ui-icon { width: 20px; height: 20px; }
+.project-visual { border-radius: 20px; }
+.data-steps article { padding: 24px; border: 1px solid var(--line-strong); border-radius: 24px; background: #ffffff04; transition: background .2s, border-color .2s; }
+.data-steps article:hover { background: #ffffff08; border-color: var(--gold); }
+.service-card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; gap: 12px; }
+.service-card-top .large-number { margin: 0; }
+.service-icon { display: inline-flex; padding: 12px; border-radius: 16px; background: #d5ac6818; color: var(--gold); }
+.filters button { border-radius: 12px; }
+.filters button[aria-pressed=true]::before { content: '✓'; display: inline-block; margin-right: 8px; }
+.overlay-toolbar button, .copy-button { min-height: 44px; border-radius: 999px; }
+@media (prefers-reduced-motion: reduce) { .button, .button::before, .index-project, .data-steps article { transition: none; } .button:active { transform: none; } }

@@ -1,4 +1,5 @@
 ---
+import Icon from './Icon.astro';
 import { url, type Project } from '../data/projects';
 interface Props { project: Project; }
 const { project: p } = Astro.props;
@@ -15,7 +16,7 @@ const steps = [
 </section>
 <section class="container data-process" aria-labelledby="process-title">
   <div class="section-heading" data-reveal><div><span class="eyebrow">L’ACCOMPAGNEMENT</span><h2 id="process-title">Du fichier brut<br /><em>au résultat expliqué.</em></h2></div></div>
-  <div class="data-steps">{steps.map(([n, title, description]) => <article data-reveal><span class="large-number">{n}</span><h3>{title}</h3><p>{description}</p></article>)}</div>
+  <div class="data-steps">{steps.map(([n, title, description]) => <article data-reveal><div class="service-card-top"><span class="service-icon"><Icon name="analytics" /></span><span class="large-number">{n}</span></div><h3>{title}</h3><p>{description}</p></article>)}</div>
 </section>
 <section class="container data-gallery-section" aria-labelledby="examples-title">
   <div class="section-heading" data-reveal><div><span class="eyebrow">EXEMPLES DE VISUALISATIONS</span><h2 id="examples-title">Rendre les données<br /><em>plus lisibles.</em></h2></div><p class="gallery-hint">Cliquez sur un graphique<br />pour l’afficher en grand.</p></div>

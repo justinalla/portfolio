@@ -1,4 +1,5 @@
 ---
+import Icon from './Icon.astro';
 import { url, type Project } from '../data/projects';
 interface Props { project: Project; }
 const { project: p } = Astro.props;
@@ -23,13 +24,13 @@ const ai = [
 </section>
 <section class="container data-process" aria-labelledby="liquid-title">
   <div class="section-heading" data-reveal><div><span class="eyebrow">DÉVELOPPEMENT SUR MESURE</span><h2 id="liquid-title">Un thème gratuit.<br /><em>Des possibilités sur mesure.</em></h2></div></div>
-  <div class="data-steps">{services.map(([n, title, description]) => <article data-reveal><span class="large-number">{n}</span><h3>{title}</h3><p>{description}</p></article>)}</div>
+  <div class="data-steps">{services.map(([n, title, description]) => <article data-reveal><div class="service-card-top"><span class="service-icon"><Icon name="code" /></span><span class="large-number">{n}</span></div><h3>{title}</h3><p>{description}</p></article>)}</div>
   <p class="gallery-note">Aucun achat de thème premium n’est requis pour cette offre. L’abonnement Shopify, la prestation de développement et les éventuelles applications restent à prévoir selon vos besoins.</p>
 </section>
 <section class="container data-process" aria-labelledby="ai-title">
   <div class="section-heading" data-reveal><div><span class="eyebrow">CHATGPT & CLAUDE · INTÉGRATIONS SUR MESURE</span><h2 id="ai-title">Une IA connectée<br /><em>aux besoins de votre boutique.</em></h2></div></div>
   <p>Je propose des intégrations utilisant les modèles d’OpenAI et d’Anthropic via leurs API. Voici les fonctions que nous pouvons développer selon votre catalogue, vos outils et vos objectifs.</p>
-  <div class="data-steps">{ai.map(([title, description], i) => <article data-reveal><span class="large-number">0{i + 1}</span><h3>{title}</h3><p>{description}</p></article>)}</div>
+  <div class="data-steps">{ai.map(([title, description], i) => <article data-reveal><div class="service-card-top"><span class="service-icon"><Icon name="spark" /></span><span class="large-number">0{i + 1}</span></div><h3>{title}</h3><p>{description}</p></article>)}</div>
   <p class="gallery-note">Les fonctions sont définies et testées pour chaque mission. Les connexions, les accès aux données et les coûts d’usage des API sont précisés au devis. Les clés restent côté serveur ; les contenus et actions sensibles passent par une validation humaine.</p>
 </section>
 <section class="container data-delivery" aria-labelledby="delivery-title">

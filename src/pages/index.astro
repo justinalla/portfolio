@@ -1,4 +1,5 @@
 ---
+import Icon from '../components/Icon.astro';
 import Layout from '../layouts/Layout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import ContactBand from '../components/ContactBand.astro';
@@ -15,9 +16,9 @@ import { projects, url } from '../data/projects';
       </div>
       <aside class="hero-index" aria-label="Sélection de projets" data-intro>
         <div class="index-heading"><span class="eyebrow">LES IDÉES PRENNENT FORME</span><span class="index-cross" aria-hidden="true">✳</span></div>
-        <a href={url('projets/matontine/')} class="index-project"><span class="index-number">01</span><div><span class="index-label">L’ÉPARGNE, EN COMMUN</span><h2>MaTontine</h2><p>Mobile · Flutter · Hors-ligne</p></div><span class="index-arrow" aria-hidden="true">↗</span></a>
-        <a href={url('projets/biostat/')} class="index-project"><span class="index-number">02</span><div><span class="index-label">DES DONNÉES AUX RÉSULTATS</span><h2>Analyse de données</h2><p>Statistiques · Visualisation · Reporting</p></div><span class="index-arrow" aria-hidden="true">↗</span></a>
-        <a href={url('projets/nova/')} class="index-project"><span class="index-number">03</span><div><span class="index-label">DU PRODUIT AU MARCHÉ</span><h2>Shopify & Liquid</h2><p>Sur mesure · Intégrations IA</p></div><span class="index-arrow" aria-hidden="true">↗</span></a>
+        <a href={url('projets/matontine/')} class="index-project"><span class="index-number"><Icon name="mobile" /><span>01</span></span><div><span class="index-label">L’ÉPARGNE, EN COMMUN</span><h2>MaTontine</h2><p>Mobile · Flutter · Hors-ligne</p></div><span class="index-arrow" aria-hidden="true">↗</span></a>
+        <a href={url('projets/biostat/')} class="index-project"><span class="index-number"><Icon name="analytics" /><span>02</span></span><div><span class="index-label">DES DONNÉES AUX RÉSULTATS</span><h2>Analyse de données</h2><p>Statistiques · Visualisation · Reporting</p></div><span class="index-arrow" aria-hidden="true">↗</span></a>
+        <a href={url('projets/nova/')} class="index-project"><span class="index-number"><Icon name="shop" /><span>03</span></span><div><span class="index-label">DU PRODUIT AU MARCHÉ</span><h2>Shopify & Liquid</h2><p>Sur mesure · Intégrations IA</p></div><span class="index-arrow" aria-hidden="true">↗</span></a>
         <div class="index-footer"><span>Des disciplines qui se rencontrent.</span><span>Un même fil.</span></div>
       </aside>
     </div>
