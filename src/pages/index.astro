@@ -24,7 +24,7 @@ import { projects, url } from '../data/projects';
     </div>
     <div class="hero-bottom"><a href="#selection">EXPLORER <span aria-hidden="true">↓</span></a><span>Penser. Construire. Transmettre.</span></div>
   </section>
-  <section class="skills-strip" aria-label="Domaines de travail"><div class="container"><span>Flutter & Web</span><span aria-hidden="true">✳</span><span>E-commerce</span><span aria-hidden="true">✳</span><span>Data & Sciences</span><span aria-hidden="true">✳</span><span>Patrimoine</span></div></section>
+  <section class="skills-strip" aria-label="Domaines de travail"><div class="container"><span class="skills-heading">MES DOMAINES</span><span class="skill-pill"><Icon name="code" />Flutter & Web</span><span class="skill-separator" aria-hidden="true">✳</span><span class="skill-pill skill-commerce"><Icon name="shop" />E-commerce</span><span class="skill-separator" aria-hidden="true">✳</span><span class="skill-pill skill-data"><Icon name="analytics" />Data & Sciences</span><span class="skill-separator" aria-hidden="true">✳</span><span class="skill-pill skill-heritage"><Icon name="landmark" />Patrimoine</span></div></section>
   <section class="section container" id="selection">
     <div class="section-heading" data-reveal><div><span class="eyebrow">01 / SÉLECTION</span><h2>Des problèmes réels.<br /><em>Des réponses concrètes.</em></h2></div><a class="text-link" href={url('travail/')}>Projets & prestations <span aria-hidden="true">↗</span></a></div>
     <div class="projects-grid">{[projects[0], projects[1], projects[2], projects[3]].map(project => <ProjectCard project={project} />)}</div>

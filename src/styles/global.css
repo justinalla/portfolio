@@ -474,3 +474,16 @@ nav .nav-contact:hover, nav .nav-contact.selected { border-color: var(--gold); }
   .header-inner .signature-name { display: block; font-size: 9px; margin-left: 12px; padding-left: 12px; }
   .header-inner #primary-navigation { grid-column: 1 / -1; grid-row: 2; }
 }
+
+.skills-strip .skills-heading, .skills-strip .skill-pill .ui-icon { display: none; }
+@media (max-width: 820px) {
+  .skills-strip { background: transparent; color: var(--ivory); padding-block: 24px; }
+  .skills-strip .container { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 10px; }
+  .skills-strip .skills-heading { display: block; flex-basis: 100%; color: var(--gold); font-size: 11px; letter-spacing: .18em; margin-bottom: 8px; order: -2; }
+  .skills-strip .skill-separator { display: none; }
+  .skills-strip .skill-pill { display: inline-flex; align-items: center; gap: 8px; padding: 12px 14px; border: 1px solid #776645; border-radius: 999px; font-size: 13px; font-weight: 400; background: #191f29; }
+  .skills-strip .skill-pill .ui-icon { display: block; width: 20px; height: 20px; color: var(--gold); }
+  .skills-strip .skill-data { order: 0; }
+  .skills-strip .skill-commerce { order: 1; }
+  .skills-strip .skill-heritage { order: 2; }
+}
