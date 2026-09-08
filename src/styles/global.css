@@ -39,7 +39,14 @@ em { color: var(--gold); font-weight: 400; }
 .site-header { position: sticky; top: 0; z-index: 20; background: var(--header); backdrop-filter: blur(18px); border-bottom: 1px solid var(--line); }
 .header-inner { min-height: 96px; display: flex; align-items: center; justify-content: space-between; gap: 36px; }
 .signature { display: inline-flex; align-items: center; font-family: 'Fraunces', Georgia, serif; font-size: 48px; line-height: .9; padding-block: 10px; flex-shrink: 0; }
-.signature > span:first-child { color: var(--gold); margin-left: -3px; }
+/* Tracé inspiré de SelfMadeSystem / Uiverse.io, adapté au monogramme j. */
+.signature-symbol { width: .92em; height: 1.02em; overflow: visible; flex-shrink: 0; }
+.signature-stroke { stroke-dasharray: 360; stroke-dashoffset: 0; animation: signature-draw 1.6s ease-in-out both; }
+.signature-period { animation-delay: .18s; }
+.signature:hover .signature-stroke, .signature:focus-visible .signature-stroke { animation-name: signature-redraw; }
+@keyframes signature-draw { from { stroke-dashoffset: 360; } to { stroke-dashoffset: 0; } }
+@keyframes signature-redraw { from { stroke-dashoffset: 360; } to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) { .signature .signature-stroke { animation: none; stroke-dashoffset: 0; } }
 .signature-name { border-left: 1px solid var(--line-strong); margin-left: 22px; padding-left: 20px; font: 600 11px/1.55 'DM Sans', sans-serif; letter-spacing: .15em; }
 nav { display: flex; gap: 29px; align-items: center; }
 nav a { position: relative; color: var(--muted); font-size: 14px; min-height: 44px; display: flex; align-items: center; padding-block: 8px; }

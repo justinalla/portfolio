@@ -29,7 +29,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <a href="#main" class="skip-link">Aller au contenu</a>
     <header class="site-header">
       <div class="container header-inner">
-        <a class="signature" href={url()} aria-label="Justin Allaglo, accueil">j<span>.</span><span class="signature-name">JUSTIN<br />ALLAGLO</span></a>
+        <a class="signature" href={url()} aria-label="Justin Allaglo, accueil"><svg class="signature-symbol" viewBox="0 0 54 60" width="44" height="49" fill="none" aria-hidden="true" focusable="false"><!-- Stroke animation inspired by SelfMadeSystem on Uiverse.io. --><defs><linearGradient id="signature-gradient" x1="0" y1="0" x2="54" y2="60" gradientUnits="userSpaceOnUse"><stop stop-color="#f1d49a"/><stop offset="1" stop-color="#bd914d"/></linearGradient></defs><g stroke="url(#signature-gradient)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path class="signature-stroke" pathLength="360" d="M31 20V42C31 56 9 56 9 43"/><circle cx="31" cy="9" r="3"/><circle class="signature-stroke signature-period" pathLength="360" cx="46" cy="48" r="3"/></g></svg><span class="signature-name">JUSTIN<br />ALLAGLO</span></a>
         <nav aria-label="Navigation principale">
           {nav.map(([path, label]) => <a href={url(path)} class:list={{ selected: active === path, 'nav-contact': path === 'contact/' }} aria-current={active === path ? 'page' : undefined}>{label}{path === 'contact/' && <span aria-hidden="true"> ↗</span>}</a>)}
         </nav>
