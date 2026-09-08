@@ -30,7 +30,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <header class="site-header">
       <div class="container header-inner">
         <a class="signature" href={url()} aria-label="Justin Allaglo, accueil"><svg class="signature-symbol" viewBox="0 0 54 60" width="44" height="49" fill="none" aria-hidden="true" focusable="false"><!-- Stroke animation inspired by SelfMadeSystem on Uiverse.io. --><defs><linearGradient id="signature-gradient" x1="0" y1="0" x2="54" y2="60" gradientUnits="userSpaceOnUse"><stop stop-color="#f1d49a"/><stop offset="1" stop-color="#bd914d"/></linearGradient></defs><g stroke="url(#signature-gradient)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path class="signature-stroke" pathLength="360" d="M31 20V42C31 56 9 56 9 43"/><circle cx="31" cy="9" r="3"/><circle class="signature-stroke signature-period" pathLength="360" cx="46" cy="48" r="3"/></g></svg><span class="signature-name">JUSTIN<br />ALLAGLO</span></a>
-        <nav aria-label="Navigation principale">
+        <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="primary-navigation" data-menu-toggle hidden><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path class="menu-bars" d="M4 6h16M4 12h16M4 18h16"/><path class="menu-cross" d="m6 6 12 12M6 18 18 6"/></svg></button>
+        <nav id="primary-navigation" aria-label="Navigation principale">
           {nav.map(([path, label]) => <a href={url(path)} class:list={{ selected: active === path, 'nav-contact': path === 'contact/' }} aria-current={active === path ? 'page' : undefined}>{label}{path === 'contact/' && <span aria-hidden="true"> ↗</span>}</a>)}
         </nav>
       </div>

@@ -1,5 +1,36 @@
 import { animate, inView, stagger } from 'motion';
 
+const menuToggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+const primaryNav = document.querySelector<HTMLElement>('#primary-navigation');
+if (menuToggle && primaryNav) {
+  const mobile = window.matchMedia('(max-width: 820px)');
+  const setMenu = (open: boolean) => {
+    menuToggle.setAttribute('aria-expanded', String(open));
+    menuToggle.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+    primaryNav.hidden = mobile.matches && !open;
+  };
+  const resetMenu = () => {
+    menuToggle.hidden = !mobile.matches;
+    if (!mobile.matches && document.activeElement === menuToggle) primaryNav.querySelector<HTMLAnchorElement>('a')?.focus();
+    if (mobile.matches && primaryNav.contains(document.activeElement)) menuToggle.focus();
+    setMenu(false);
+  };
+  menuToggle.addEventListener('click', () => setMenu(menuToggle.getAttribute('aria-expanded') !== 'true'));
+  primaryNav.addEventListener('click', event => {
+    if ((event.target as Element).closest('a') && mobile.matches) setMenu(false);
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
+      setMenu(false); menuToggle.focus();
+    }
+  });
+  document.addEventListener('click', event => {
+    if (!menuToggle.contains(event.target as Node) && !primaryNav.contains(event.target as Node)) setMenu(false);
+  });
+  mobile.addEventListener('change', resetMenu);
+  resetMenu();
+}
+
 const lightbox = document.querySelector<HTMLDialogElement>('[data-lightbox]');
 const lightboxImage = document.querySelector<HTMLImageElement>('[data-lightbox-image]');
 const lightboxTitle = document.querySelector<HTMLElement>('[data-lightbox-title]');
