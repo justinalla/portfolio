@@ -3,7 +3,7 @@ import '../styles/global.css';
 import { url } from '../data/projects';
 interface Props { title?: string; description?: string; active?: string; }
 const { title = 'Justin Allaglo — Code, commerce & sciences', description = 'Portfolio de Justin Allaglo, à Cotonou. Applications web et mobile, e-commerce et outils scientifiques. Découvrez les projets et la méthode.', active = '' } = Astro.props;
-const nav = [['', 'Accueil'], ['approche/', 'Approche'], ['travail/', 'Travail'], ['outils/', 'Outils'], ['contact/', 'Contact']];
+const nav = [['', 'Accueil'], ['approche/', 'Approche'], ['travail/', 'Travail'], ['outils/', 'Outils'], ['formation/', 'Formation'], ['contact/', 'Contact']];
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 <!doctype html>

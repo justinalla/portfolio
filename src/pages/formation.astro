@@ -1,0 +1,20 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContactBand from '../components/ContactBand.astro';
+import Icon from '../components/Icon.astro';
+const diplomas = [
+  ['2023', 'Licence professionnelle en technologie alimentaire', 'École Polytechnique d’Abomey-Calavi (EPAC) · Bénin', 'Un socle scientifique pour aborder la transformation agroalimentaire, les procédés et les problématiques de qualité.'],
+  ['2019', 'Baccalauréat D', 'CEG Houngomè · Bénin', 'Une formation scientifique prolongée par un parcours universitaire en agroalimentaire.'],
+];
+const learning = [
+  ['2022', 'Les fondamentaux du marketing numérique', 'Google · L’Atelier Numérique Africain', 'Marketing numérique'],
+  ['Autoformation', 'Automatisation e-commerce', 'Apprentissage autonome', 'E-commerce'],
+  ['Formation complémentaire', 'Développement Python', 'Udemy · Parcours mentionné comme en cours dans mon CV', 'Programmation'],
+];
+---
+<Layout title="Formation — Justin Allaglo" description="Mon parcours de formation : technologie alimentaire à l’EPAC, marketing numérique et apprentissages en programmation et e-commerce." active="formation/">
+  <section class="page-hero container"><span class="eyebrow" data-intro>FORMATION / MON PARCOURS</span><h1 data-intro>Un socle scientifique.<br /><em>Des horizons numériques.</em></h1><p data-intro>Formé en technologie alimentaire, je complète mon parcours par le marketing numérique, la programmation et l’automatisation. Ces domaines nourrissent ma manière d’aborder les données et les projets digitaux.</p></section>
+  <section class="container education-section" aria-labelledby="diploma-title"><div class="section-heading" data-reveal><div><span class="eyebrow">PARCOURS ACADÉMIQUE</span><h2 id="diploma-title">Les fondations<br /><em>de mon parcours.</em></h2></div></div><ol class="education-timeline">{diplomas.map(([year, title, school, description]) => <li data-reveal><span class="education-year">{year}</span><article><span class="service-icon"><Icon name="landmark" /></span><h3>{title}</h3><p class="education-school">{school}</p><p>{description}</p></article></li>)}</ol></section>
+  <section class="container education-section" aria-labelledby="learning-title"><div class="section-heading" data-reveal><div><span class="eyebrow">FORMATION COMPLÉMENTAIRE</span><h2 id="learning-title">Apprendre.<br /><em>Élargir mes compétences.</em></h2></div></div><div class="education-learning">{learning.map(([date, title, provider, category]) => <article data-reveal><span class="eyebrow">{date}</span><h3>{title}</h3><p>{provider}</p><div class="tags"><span>{category}</span></div></article>)}</div></section>
+  <ContactBand />
+</Layout>
