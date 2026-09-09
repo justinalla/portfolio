@@ -11,10 +11,29 @@ const learning = [
   ['Autoformation', 'Automatisation e-commerce', 'Apprentissage autonome', 'E-commerce'],
   ['Formation complémentaire', 'Développement Python', 'Udemy · Parcours mentionné comme en cours dans mon CV', 'Programmation'],
 ];
+const domains = [
+  { title: 'Agroalimentaire & qualité', icon: 'landmark', items: [
+    { role: 'Assistant production', company: 'CRISAB', period: 'Juin – septembre 2022', tasks: ['Optimisation des diagrammes de production.', 'Suivi des indicateurs de performance : rendement, pH et Brix.', 'Suivi des paramètres critiques du processus de production, notamment l’acidité et la couleur.'] },
+    { role: 'Assistant technicien de laboratoire', company: 'SHB', period: 'Septembre – octobre 2021', tasks: ['Contrôle qualité des lots de graines de coton : humidité, avaries et acidité.', 'Réalisation d’analyses et d’essais de laboratoire.', 'Participation à l’amélioration continue des activités qualité.'] },
+    { role: 'Assistant de production', company: 'SENS Bénin', period: 'Août 2020', tasks: ['Participation à des activités de transformation agroalimentaire locale.', 'Découverte d’initiatives entrepreneuriales rurales dans le cadre d’une immersion professionnelle.'] },
+  ] },
+  { title: 'Analyse de données & solutions digitales', icon: 'analytics', items: [
+    { role: 'Analyste de données & coordinateur de solution digitale', company: 'CRISAB', period: '', tasks: ['Analyse des données industrielles : rendements et anomalies.', 'Création de tableaux de bord Power BI pour le pilotage de la qualité.'] },
+    { role: 'Analyste digital', company: 'CoDFTAA', period: '2024', tasks: ['Conception d’un système numérique de saisie terrain pour faciliter la centralisation des données.'] },
+  ] },
+  { title: 'E-commerce & Shopify', icon: 'shop', items: [
+    { role: 'Cofondateur', company: 'ASP Services', period: '', tasks: ['Création de boutiques Shopify optimisées.', 'Configuration et suivi des conversions avec les pixels Facebook et TikTok.'] },
+  ] },
+];
+
 ---
-<Layout title="Formation — Justin Allaglo" description="Mon parcours de formation : technologie alimentaire à l’EPAC, marketing numérique et apprentissages en programmation et e-commerce." active="formation/">
-  <section class="page-hero container"><span class="eyebrow" data-intro>FORMATION / MON PARCOURS</span><h1 data-intro>Un socle scientifique.<br /><em>Des horizons numériques.</em></h1><p data-intro>Formé en technologie alimentaire, je complète mon parcours par le marketing numérique, la programmation et l’automatisation. Ces domaines nourrissent ma manière d’aborder les données et les projets digitaux.</p></section>
+<Layout title="Parcours — Formation & expériences — Justin Allaglo" description="Mon parcours : formations et expériences en agroalimentaire, qualité, analyse de données et e-commerce." active="formation/">
+  <section class="page-hero container"><span class="eyebrow" data-intro>PARCOURS / FORMATIONS & EXPÉRIENCES</span><h1 data-intro>Un socle scientifique.<br /><em>Des horizons numériques.</em></h1><p data-intro>Formé en technologie alimentaire, je complète mon parcours par le marketing numérique, la programmation et l’automatisation. Ces domaines nourrissent ma manière d’aborder les données et les projets digitaux.</p></section>
   <section class="container education-section" aria-labelledby="diploma-title"><div class="section-heading" data-reveal><div><span class="eyebrow">PARCOURS ACADÉMIQUE</span><h2 id="diploma-title">Les fondations<br /><em>de mon parcours.</em></h2></div></div><ol class="education-timeline">{diplomas.map(([year, title, school, description]) => <li data-reveal><span class="education-year">{year}</span><article><span class="service-icon"><Icon name="landmark" /></span><h3>{title}</h3><p class="education-school">{school}</p><p>{description}</p></article></li>)}</ol></section>
   <section class="container education-section" aria-labelledby="learning-title"><div class="section-heading" data-reveal><div><span class="eyebrow">FORMATION COMPLÉMENTAIRE</span><h2 id="learning-title">Apprendre.<br /><em>Élargir mes compétences.</em></h2></div></div><div class="education-learning">{learning.map(([date, title, provider, category]) => <article data-reveal><span class="eyebrow">{date}</span><h3>{title}</h3><p>{provider}</p><div class="tags"><span>{category}</span></div></article>)}</div></section>
+  <section class="container education-section" aria-labelledby="experience-title">
+    <div class="section-heading" data-reveal><div><span class="eyebrow">EXPÉRIENCES PROFESSIONNELLES</span><h2 id="experience-title">Du terrain<br /><em>aux projets digitaux.</em></h2></div></div>
+    {domains.map((domain, i) => <section class="experience-domain" aria-labelledby={`domain-${i}`}><h3 id={`domain-${i}`} class="experience-domain-title" data-reveal><Icon name={domain.icon} />{domain.title}</h3><div class="experience-list">{domain.items.map(item => <article data-reveal><div class="experience-heading"><span class="eyebrow">{item.company}</span>{item.period && <span class="experience-period">{item.period}</span>}</div><h4>{item.role}</h4><ul class="deliverables">{item.tasks.map(task => <li>{task}</li>)}</ul></article>)}</div></section>)}
+  </section>
   <ContactBand />
 </Layout>
