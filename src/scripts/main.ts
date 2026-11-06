@@ -152,3 +152,15 @@ copyButton?.addEventListener('click', async () => {
     if (copyStatus) copyStatus.textContent = 'Copie automatique indisponible. Sélectionnez l’adresse ci-dessus pour la copier.';
   }
 });
+
+const contactForm = document.querySelector<HTMLFormElement>('[data-contact-form]');
+contactForm?.addEventListener('submit', event => {
+ event.preventDefault();
+ if (!contactForm.reportValidity()) return;
+ const values = new FormData(contactForm);
+ const service = String(values.get('service') || 'Mon projet');
+ const body = `Bonjour Justin,\n\n${values.get('message')}\n\n${values.get('name')}\n${values.get('email')}`;
+ window.location.href = `mailto:justinallaglocareer@gmail.com?subject=${encodeURIComponent(service)}&body=${encodeURIComponent(body)}`;
+ const status = document.querySelector<HTMLElement>('[data-contact-status]');
+ if (status) status.textContent = 'Votre messagerie va s’ouvrir. Si elle ne s’ouvre pas, utilisez le lien e-mail sur cette page. Votre message reste disponible ici.';
+});

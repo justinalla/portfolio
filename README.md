@@ -47,3 +47,19 @@ MaTontine présente quatre captures réelles fournies par le propriétaire, dans
 L’accueil présente MaTontine, puis les trois domaines dans l’ordre développement, analyse de données et Shopify. Les projets en développement restent dans la collection complète. Les cartes distinguent projets, réalisations et prestations. `src/styles/home.css` contient les ajustements éditoriaux.
 
 GSAP et ScrollTrigger animent les titres et les apparitions, avec une profondeur discrète sur les captures du hero sur ordinateur. Le défilement reste natif et les animations respectent `prefers-reduced-motion`, y compris lors d’un changement de préférence. Les filtres utilisent le paramètre `domaine` pour permettre les liens directs et conserver la sélection après navigation.
+
+## Variante Équilibre
+
+Branche `design/equilibre`, indépendante de `main`. Palette vert profond, sauge,
+ivoire et pêche, titres Fraunces, navigation compacte et nouvelles compositions
+pour l’accueil, les projets, la démarche, les compétences et le parcours.
+Les captures d’applications et les graphiques existants sont conservés sans retouche.
+Logo Shopify officiel : https://www.shopify.com/brand-assets (fichier local `public/images/shopify.svg`).
+
+- `/contact/` : variante B, sélection du service.
+- `/contact-direct/` : variante A, présentation personnelle et formulaire.
+- Les formulaires préparent un lien mailto après validation native. Ils ne transmettent
+  pas de message à un serveur ; le visiteur confirme l’envoi dans sa messagerie.
+- Aucun changement de configuration GitHub Pages : le site public reste sur `main`.
+- Vérification visuelle navigateur à effectuer avant fusion ; le navigateur de
+  l’environnement de développement ne démarre pas (restriction sur les sockets).
