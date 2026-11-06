@@ -1,4 +1,5 @@
 ---
+import DataMotion from '../components/DataMotion.astro';
 import Icon from '../components/Icon.astro';
 import Layout from '../layouts/Layout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
@@ -19,5 +20,6 @@ const domains = [
  <section class="container section eq-expertise"><span class="eyebrow" data-reveal>MES DOMAINES D’INTERVENTION</span><h2 data-reveal>Trois compétences,<br />un même objectif : être utile.</h2><div class="eq-domains">{domains.map((d,i)=><a href={url(d.href)} data-reveal><div class="eq-domain-top"><Icon name={d.icon} /><span>0{i+1}</span></div><h3>{d.title}</h3><p>{d.text}</p><span class="text-link">En savoir plus ↗</span></a>)}</div></section>
  <section class="container eq-journey" data-reveal><div><span class="eyebrow">MON PARCOURS</span><h2>La curiosité comme fil conducteur.</h2><p>De la technologie alimentaire au développement, mon parcours fait dialoguer les sciences, les données et la création. Depuis le Bénin, je construis des projets qui répondent à des besoins concrets.</p><a class="text-link" href={url('formation/')}>Découvrir mon parcours ↗</a></div><div class="eq-journey-art" aria-hidden="true"><span>Science</span><span>Code</span><span>Idées</span></div></section>
  <section class="container section" id="selection"><div class="section-heading" data-reveal><div><span class="eyebrow">UNE SÉLECTION</span><h2>Du besoin au projet.</h2></div><a class="text-link" href={url('travail/')}>Tous les projets ↗</a></div><div class="projects-grid">{selection.map(project=><ProjectCard project={project}/>)}</div></section>
+ <DataMotion />
  <ContactBand />
 </Layout>
