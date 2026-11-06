@@ -1,7 +1,7 @@
 ---
 import { url } from '../data/projects';
 ---
-<section class="contact-band container" data-reveal>
-  <div><span class="eyebrow">FAISONS LE PREMIER PAS</span><h2>Une idée en tête ?<br /><em>Parlons-en.</em></h2></div>
-  <div class="contact-band-right"><p>Le contexte, le besoin, l’échéance.<br />Un premier échange pour trouver la bonne direction.</p><a class="button light" href={url('contact/')}>Parlons de votre projet <span aria-hidden="true">↗</span></a></div>
-</section>
+<section class="contact-band" aria-labelledby="contact-band-title"><div class="container contact-band-inner">
+  <div data-reveal><span class="eyebrow">ET SI ON CONSTRUISAIT LA SUITE ?</span><h2 id="contact-band-title">Votre idée.<br /><em>Notre prochain échange.</em></h2></div>
+  <div class="contact-band-right" data-reveal><p>Un besoin précis ou une première piste.<br />Tout commence par une conversation.</p><a class="button light" href={url('contact/')}>Parlons de votre projet <span aria-hidden="true">↗</span></a></div>
+</div></section>
