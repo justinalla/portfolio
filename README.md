@@ -2,7 +2,7 @@
 
 Site public : https://justinalla.github.io/portfolio/
 
-Portfolio français en Astro, CSS, TypeScript et Motion. Cinq pages principales, six fiches projet, animations progressives et filtres par discipline. Le site reste lisible sans JavaScript.
+Portfolio français en Astro, CSS, TypeScript et GSAP. Six pages principales, six fiches projet, animations progressives et filtres par discipline. Le site reste lisible sans JavaScript.
 
 ## Développer
 
@@ -41,3 +41,9 @@ Un modèle est fourni dans `docs/github-pages-actions.yml`. Il est inactif pour 
 La route historique `/projets/biostat/` présente désormais l’offre « Analyse de données scientifiques », avec quatre graphiques fournis par le propriétaire et une ouverture en overlay. Les sources des données et les protocoles ne sont pas documentés dans les captures ; les légendes décrivent les méthodes visuelles et ne revendiquent pas de résultat clinique ou causal. Les images originales sont conservées sans retouche dans `public/images/biostat/`. Les autres captures reçues ne sont pas publiées dans cette sélection.
 
 MaTontine présente quatre captures réelles fournies par le propriétaire, dans `public/images/matontine/`. Les images sont conservées sans retouche ; les noms et montants affichés relèvent de la démonstration. Le texte distingue les fonctionnalités visibles des modèles annoncés « Bientôt ». Les autres projets conservent des monogrammes typographiques. Aucun résultat commercial, témoignage ou portrait n'a été inventé. Contact par e-mail avec bouton de copie. Polices Google Fonts avec polices de secours ; aucun outil de suivi.
+
+## Accueil et animations
+
+L’accueil présente MaTontine, puis les trois domaines dans l’ordre développement, analyse de données et Shopify. Les projets en développement restent dans la collection complète. Les cartes distinguent projets, réalisations et prestations. `src/styles/home.css` contient les ajustements éditoriaux.
+
+GSAP et ScrollTrigger animent les titres et les apparitions, avec une profondeur discrète sur les captures du hero sur ordinateur. Le défilement reste natif et les animations respectent `prefers-reduced-motion`, y compris lors d’un changement de préférence. Les filtres utilisent le paramètre `domaine` pour permettre les liens directs et conserver la sélection après navigation.
