@@ -1,17 +1,20 @@
 ---
 import Icon from './Icon.astro';
 import { url, type Project } from '../data/projects';
-interface Props { project: Project; }
-const { project: p } = Astro.props;
+interface Props { project: Project; headingLevel?: 2 | 3; }
+const { project: p, headingLevel = 3 } = Astro.props;
+const Heading = headingLevel === 2 ? 'h2' : 'h3';
+const status = p.inProgress ? 'En développement' : p.service ? 'Prestation' : 'Projet';
 ---
 <article class:list={['project-card', p.color]} data-project data-tags={p.filters.join(' ')} data-reveal>
   <a href={url(`projets/${p.slug}/`)} class:list={['project-visual', { 'with-screenshots': !!p.screenshots, 'with-chart': p.service }]} aria-label={`Découvrir ${p.name}`}>
-    <span class="visual-top"><span class="card-category"><Icon name={p.slug === 'biostat' ? 'analytics' : p.slug === 'nova' ? 'shop' : p.slug === 'matontine' ? 'mobile' : 'code'} />{p.category}</span><span>{p.number} / 06</span></span>
+    <span class="visual-top"><span class="card-category"><Icon name={p.slug === 'biostat' ? 'analytics' : p.slug === 'nova' ? 'shop' : p.slug === 'matontine' ? 'mobile' : 'code'} />{p.category}</span><span class="card-number" aria-hidden="true">{p.number}</span></span>
     {p.service && p.screenshots ? <span class="card-chart" aria-hidden="true"><img src={url(`images/${p.slug}/${p.screenshots[0].file}`)} width={p.screenshots[0].width} height={p.screenshots[0].height} alt="" loading="lazy" decoding="async" /></span> : p.screenshots ? <span class="card-screenshots" aria-hidden="true">{p.screenshots.slice(2).map(shot => <img src={url(`images/${p.slug}/${shot.file}`)} width="561" height="1280" alt="" loading="lazy" decoding="async" />)}</span> : <span class="project-mark" aria-hidden="true">{p.mark}</span>}
     <span class="visual-bottom"><span>{p.tech.slice(0, 2).join(' / ')}</span><span class="circle-arrow" aria-hidden="true">↗</span></span>
   </a>
   <div class="project-copy">
-    <h3><a href={url(`projets/${p.slug}/`)}>{p.name}</a></h3>
+    <span class:list={["project-status", { "status-progress": p.inProgress }]}>{p.slug === "matontine" ? "Réalisation" : status}</span>
+    <Heading><a href={url(`projets/${p.slug}/`)}>{p.name}</a></Heading>
     <p>{p.summary}</p>
     <div class="tags">{p.tags.map(tag => <span>{tag}</span>)}</div>
   </div>
