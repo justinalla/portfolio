@@ -1,4 +1,6 @@
-import { animate, inView, stagger } from 'motion';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
 
 const menuToggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
 const primaryNav = document.querySelector<HTMLElement>('#primary-navigation');
@@ -65,20 +67,28 @@ if (lightbox && lightboxImage && lightboxTitle && closeLightbox && typeof lightb
   });
 }
 
+// HTML stays visible without JavaScript. Reduced motion reverts all GSAP styles.
 const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
-let motionAllowed = !motionPreference.matches;
-const runningAnimations: ReturnType<typeof animate>[] = [];
-
-// Content is visible in the HTML and CSS; animations enhance a working page.
-if (motionAllowed) {
-  runningAnimations.push(animate('[data-intro]', { opacity: [0, 1], y: [20, 0] }, { duration: 0.7, delay: stagger(0.09), ease: [0.22, 1, 0.36, 1] }));
-  inView('[data-reveal]', element => {
-    if (motionAllowed) runningAnimations.push(animate(element, { opacity: [0.35, 1], y: [22, 0] }, { duration: 0.65, ease: [0.22, 1, 0.36, 1] }));
-  }, { amount: 0.1 });
-}
+const media = gsap.matchMedia();
+media.add('(prefers-reduced-motion: no-preference)', () => {
+  const lines = document.querySelectorAll('[data-hero-line]');
+  if (lines.length) gsap.from(lines, { yPercent: 105, rotation: 2, duration: .85, stagger: .1, ease: 'power3.out', clearProps: 'transform' });
+  gsap.from('[data-intro]', { opacity: 0, y: 18, duration: .65, stagger: .08, delay: lines.length ? .2 : 0, ease: 'power2.out', clearProps: 'opacity,transform' });
+  gsap.utils.toArray<HTMLElement>('[data-reveal]').forEach(element => {
+    gsap.from(element, { opacity: .35, y: 24, duration: .65, ease: 'power2.out', clearProps: 'opacity,transform', scrollTrigger: { trigger: element, start: 'top 94%', once: true } });
+  });
+});
+// A subtle depth effect only on larger screens; native scrolling stays untouched.
+media.add('(min-width: 821px) and (prefers-reduced-motion: no-preference)', () => {
+  const stage = document.querySelector('.showcase-stage');
+  if (stage) gsap.to('.showcase-phone', { y: -18, stagger: .08, ease: 'none', scrollTrigger: { trigger: stage, start: 'top center', end: 'bottom top', scrub: .7 } });
+});
+let filterAnimation: gsap.core.Tween | undefined;
 motionPreference.addEventListener('change', event => {
-  motionAllowed = !event.matches;
-  if (event.matches) runningAnimations.forEach(animation => animation.complete());
+  if (event.matches) {
+    filterAnimation?.kill();
+    gsap.set('[data-project]', { clearProps: 'opacity,transform' });
+  }
 });
 
 const progress = document.querySelector<HTMLElement>('.reading-progress');
@@ -100,18 +110,36 @@ const cards = document.querySelectorAll<HTMLElement>('[data-project]');
 const results = document.querySelector<HTMLElement>('[data-results]');
 const filterGroup = document.querySelector<HTMLElement>('[data-filters]');
 if (filterGroup) filterGroup.hidden = false;
-filterButtons.forEach(button => button.addEventListener('click', () => {
-  const filter = button.dataset.filter;
-  filterButtons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+const applyFilter = (filter: string, updateUrl = true) => {
+  filterAnimation?.kill();
+  gsap.killTweensOf(cards);
+  gsap.set(cards, { clearProps: 'opacity,transform' });
+  filterButtons.forEach(item => item.setAttribute('aria-pressed', String(item.dataset.filter === filter)));
   const visible: HTMLElement[] = [];
   cards.forEach(card => {
-    card.hidden = filter !== 'all' && !(card.dataset.tags || '').split(' ').includes(filter || '');
+    card.hidden = filter !== 'all' && !(card.dataset.tags || '').split(' ').includes(filter);
     if (!card.hidden) visible.push(card);
   });
   if (results) results.textContent = `${visible.length} résultat${visible.length > 1 ? 's' : ''}`;
-  if (motionAllowed) runningAnimations.push(animate(visible, { opacity: [0.4, 1], y: [12, 0] }, { duration: 0.32, delay: stagger(0.035) }));
+  if (!motionPreference.matches) filterAnimation = gsap.fromTo(visible, { opacity: .5, y: 10 }, { opacity: 1, y: 0, duration: .3, stagger: .035, overwrite: true, clearProps: 'opacity,transform' });
+  if (updateUrl) {
+    const next = new URL(window.location.href);
+    if (filter === 'all') next.searchParams.delete('domaine');
+    else next.searchParams.set('domaine', filter);
+    window.history.replaceState(null, '', next);
+  }
+  ScrollTrigger.refresh();
   scheduleProgress();
-}));
+};
+if (filterGroup) {
+  const readFilter = () => {
+    const requested = new URLSearchParams(window.location.search).get('domaine');
+    return Array.from(filterButtons).some(button => button.dataset.filter === requested) ? requested! : 'all';
+  };
+  applyFilter(readFilter(), false);
+  filterButtons.forEach(button => button.addEventListener('click', () => applyFilter(button.dataset.filter || 'all')));
+  window.addEventListener('popstate', () => applyFilter(readFilter(), false));
+}
 
 const copyButton = document.querySelector<HTMLButtonElement>('[data-copy]');
 const copyStatus = document.querySelector<HTMLElement>('[data-copy-status]');

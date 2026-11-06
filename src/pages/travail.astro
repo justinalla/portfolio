@@ -9,7 +9,7 @@ import { projects, filters } from '../data/projects';
   <section class="container project-section">
     <div class="filters" role="group" aria-label="Filtrer les projets" data-filters hidden>{filters.map(([value, label]) => <button type="button" data-filter={value} aria-pressed={value === 'all'}>{label}</button>)}</div>
     <p class="result-count" role="status" aria-live="polite" data-results>6 projets et prestations</p>
-    <div class="projects-grid">{projects.map(project => <ProjectCard project={project} />)}</div>
+    <div class="projects-grid">{['matontine', 'biostat', 'nova', 'labo-microbio', 'gbe', 'recherche-produit'].map(slug => <ProjectCard project={projects.find(p => p.slug === slug)!} headingLevel={2} />)}</div>
   </section>
   <ContactBand />
 </Layout>
