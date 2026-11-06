@@ -47,3 +47,9 @@ MaTontine présente quatre captures réelles fournies par le propriétaire, dans
 L’accueil présente MaTontine, puis les trois domaines dans l’ordre développement, analyse de données et Shopify. Les projets en développement restent dans la collection complète. Les cartes distinguent projets, réalisations et prestations. `src/styles/home.css` contient les ajustements éditoriaux.
 
 GSAP et ScrollTrigger animent les titres et les apparitions, avec une profondeur discrète sur les captures du hero sur ordinateur. Le défilement reste natif et les animations respectent `prefers-reduced-motion`, y compris lors d’un changement de préférence. Les filtres utilisent le paramètre `domaine` pour permettre les liens directs et conserver la sélection après navigation.
+
+## Variante Studio Cobalt
+
+Branche expérimentale `design/studio-cobalt` : refonte complète claire, papier / cobalt / citron. Typographies Archivo et Space Grotesk. Toutes les pages partagent le nouveau système de styles dans `src/styles/global.css` et `tokens.css`. La feuille historique `home.css` est conservée mais n’est plus importée. Le contenu reste factuel, les médias sont les captures existantes.
+
+Cette branche ne doit pas être fusionnée sur main sans validation de la direction visuelle. Un aperçu séparé est prévu pour la comparaison.
