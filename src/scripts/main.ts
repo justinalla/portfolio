@@ -78,10 +78,23 @@ media.add('(prefers-reduced-motion: no-preference)', () => {
     gsap.from(element, { opacity: .35, y: 24, duration: .65, ease: 'power2.out', clearProps: 'opacity,transform', scrollTrigger: { trigger: element, start: 'top 94%', once: true } });
   });
 });
-// A subtle depth effect only on larger screens; native scrolling stays untouched.
-media.add('(min-width: 821px) and (prefers-reduced-motion: no-preference)', () => {
-  const stage = document.querySelector('.showcase-stage');
-  if (stage) gsap.to('.showcase-phone', { y: -18, stagger: .08, ease: 'none', scrollTrigger: { trigger: stage, start: 'top center', end: 'bottom top', scrub: .7 } });
+// Light depth on desktop; no automatic movement on touch screens.
+media.add('(min-width: 821px) and (pointer: fine) and (prefers-reduced-motion: no-preference)', () => {
+  const stage = document.querySelector('.eq-collage');
+  if (!stage) return;
+  gsap.to('.eq-phone', { y: -18, ease: 'none', scrollTrigger: { trigger: stage, start: 'top center', end: 'bottom top', scrub: .7 } });
+  gsap.to('.eq-note', { y: 12, ease: 'none', scrollTrigger: { trigger: stage, start: 'top center', end: 'bottom top', scrub: .7 } });
+});
+// Selected service feedback, including keyboard selection.
+media.add('(prefers-reduced-motion: no-preference)', () => {
+  const inputs = document.querySelectorAll<HTMLInputElement>('.eq-service-option input');
+  const animate = (event: Event) => {
+    const option = (event.currentTarget as HTMLInputElement).closest('.eq-service-option');
+    const icon = option?.querySelector('.ui-icon');
+    if (icon) gsap.fromTo(icon, { y: 3, scale: .94 }, { y: 0, scale: 1, duration: .3, ease: 'power2.out', overwrite: true, clearProps: 'transform' });
+  };
+  inputs.forEach(input => input.addEventListener('change', animate));
+  return () => { inputs.forEach(input => input.removeEventListener('change', animate)); gsap.killTweensOf('.eq-service-option .ui-icon'); gsap.set('.eq-service-option .ui-icon', {clearProps:'transform'}); };
 });
 let filterAnimation: gsap.core.Tween | undefined;
 motionPreference.addEventListener('change', event => {
@@ -164,3 +177,28 @@ contactForm?.addEventListener('submit', event => {
  const status = document.querySelector<HTMLElement>('[data-contact-status]');
  if (status) status.textContent = 'Votre messagerie va s’ouvrir. Si elle ne s’ouvre pas, utilisez le lien e-mail sur cette page. Votre message reste disponible ici.';
 });
+
+// A small SVG film: progressive explanation, user-controlled playback, no video download.
+const scene = document.querySelector<HTMLElement>('[data-motion-scene]');
+const toggleFilm = scene?.querySelector<HTMLButtonElement>('[data-motion-toggle]');
+let filmPausedByUser = false;
+if (scene && toggleFilm) {
+ media.add('(prefers-reduced-motion: no-preference)', () => {
+  const q = gsap.utils.selector(scene);
+  const film = gsap.timeline({ paused:true, repeat:-1, repeatDelay:2 });
+  film.fromTo(q('.film-row'), {opacity:.25,x:-6}, {opacity:1,x:0,stagger:.18,duration:.45,ease:'power2.out'},0)
+      .fromTo(q('.film-bar'), {scaleY:.08,transformOrigin:'50% 100%'}, {scaleY:1,stagger:.2,duration:.8,ease:'power2.out'},1.4)
+      .fromTo(q('.film-line'), {strokeDasharray:100,strokeDashoffset:100}, {strokeDashoffset:0,duration:.8,ease:'power1.inOut'},2.5)
+      .fromTo(q('.film-report'), {opacity:.3,y:7}, {opacity:1,y:0,duration:.65,ease:'power2.out'},3.3)
+      .fromTo(q('.film-check'), {opacity:0}, {opacity:1,duration:.35},4.1)
+      .to({}, {duration:1.8});
+  let inView = false;
+  const sync = () => { if (inView && !document.hidden && !filmPausedByUser) film.play(); else film.pause(); };
+  const observer = new IntersectionObserver(entries => { inView=entries[0].isIntersecting;sync(); },{threshold:.2});
+  observer.observe(scene);
+  const click = () => {filmPausedByUser=!filmPausedByUser; toggleFilm.textContent=filmPausedByUser?'Reprendre l’animation':'Mettre en pause';sync();};
+  toggleFilm.hidden=false; toggleFilm.textContent=filmPausedByUser?'Reprendre l’animation':'Mettre en pause';
+  toggleFilm.addEventListener('click',click);document.addEventListener('visibilitychange',sync);
+  return () => {observer.disconnect();document.removeEventListener('visibilitychange',sync);toggleFilm.removeEventListener('click',click);film.revert();toggleFilm.hidden=true;};
+ });
+}
