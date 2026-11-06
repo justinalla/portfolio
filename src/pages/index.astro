@@ -4,35 +4,57 @@ import Layout from '../layouts/Layout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import ContactBand from '../components/ContactBand.astro';
 import { projects, url } from '../data/projects';
+const selection = ['matontine', 'biostat', 'nova'].map(slug => projects.find(p => p.slug === slug)!);
+const services = [
+  { number: '01', icon: 'code', title: 'Développement web & mobile', text: 'Transformer un besoin en une application claire, adaptée aux personnes qui l’utilisent.', detail: 'Conception · Développement · Prise en main', href: 'contact/' },
+  { number: '02', icon: 'analytics', title: 'Analyse de données', text: 'Préparer vos données, choisir les analyses adaptées et restituer des résultats compréhensibles.', detail: 'Préparation · Statistiques · Rapport', href: 'projets/biostat/' },
+  { number: '03', icon: 'shop', title: 'Shopify sur mesure', text: 'Personnaliser votre boutique et ses pages produit avec des sections Liquid adaptées à votre offre.', detail: 'Liquid · Pages produit · Intégrations', href: 'projets/nova/' },
+];
 ---
 <Layout active="">
-  <section class="hero container">
-    <div class="hero-top" data-intro><span class="eyebrow">DÉVELOPPEMENT · COMMERCE · SCIENCES</span><span class="location">Cotonou, Bénin <span aria-hidden="true">↗</span></span></div>
+  <section class="hero container home-hero">
+    <div class="hero-top" data-intro><span class="eyebrow">DÉVELOPPEMENT · DATA · E-COMMERCE</span><span class="location">Cotonou, Bénin <span aria-hidden="true">↗</span></span></div>
     <div class="hero-grid">
       <div class="hero-copy">
-        <h1 data-intro>Des idées.<br />Du code.<br /><em>Du concret.</em></h1>
-        <p class="hero-description" data-intro>Je suis Justin Allaglo. Je conçois des applications, des expériences e-commerce et des outils scientifiques qui rendent les choses plus accessibles.</p>
-        <div class="hero-actions" data-intro><a class="button" href={url('travail/')}>Découvrir mon travail <span aria-hidden="true">↗</span></a><a class="subtle-link" href={url('approche/')}>Mon approche <span aria-hidden="true">→</span></a></div>
+        <h1 aria-label="Des idées. Du code. Du concret."><span class="hero-line"><span data-hero-line>Des idées.</span></span><span class="hero-line"><span data-hero-line>Du code.</span></span><span class="hero-line"><em data-hero-line>Du concret.</em></span></h1>
+        <p class="hero-description" data-intro>Je suis Justin Allaglo. Je développe des applications, j’analyse des données scientifiques et je crée des boutiques Shopify sur mesure.</p>
+        <div class="hero-actions" data-intro><a class="button" href="#selection">Voir mes réalisations <span aria-hidden="true">↓</span></a><a class="subtle-link" href={url('contact/')}>Parlons de votre projet <span aria-hidden="true">↗</span></a></div>
       </div>
-      <aside class="hero-index" aria-label="Sélection de projets" data-intro>
-        <div class="index-heading"><span class="eyebrow">LES IDÉES PRENNENT FORME</span><span class="index-cross" aria-hidden="true">✳</span></div>
-        <a href={url('projets/matontine/')} class="index-project"><span class="index-number"><Icon name="mobile" /><span>01</span></span><div><span class="index-label">L’ÉPARGNE, EN COMMUN</span><h2>MaTontine</h2><p>Mobile · Flutter · Hors-ligne</p></div><span class="index-arrow" aria-hidden="true">↗</span></a>
-        <a href={url('projets/biostat/')} class="index-project"><span class="index-number"><Icon name="analytics" /><span>02</span></span><div><span class="index-label">DES DONNÉES AUX RÉSULTATS</span><h2>Analyse de données</h2><p>Statistiques · Visualisation · Reporting</p></div><span class="index-arrow" aria-hidden="true">↗</span></a>
-        <a href={url('projets/nova/')} class="index-project"><span class="index-number"><Icon name="shop" /><span>03</span></span><div><span class="index-label">DU PRODUIT AU MARCHÉ</span><h2>Shopify & Liquid</h2><p>Sur mesure · Intégrations IA</p></div><span class="index-arrow" aria-hidden="true">↗</span></a>
-        <div class="index-footer"><span>Des disciplines qui se rencontrent.</span><span>Un même fil.</span></div>
+      <aside class="hero-showcase" aria-label="À découvrir : MaTontine" data-intro>
+        <div class="showcase-heading"><span class="eyebrow">UN BESOIN. UNE APPLICATION.</span><span class="showcase-edition">01 / MOBILE</span></div>
+        <a class="showcase-link" href={url('projets/matontine/')} aria-label="Découvrir MaTontine, application d’épargne collective">
+          <div class="showcase-stage" aria-hidden="true">
+            <span class="showcase-word">ensemble.</span>
+            <img class="showcase-phone phone-back" src={url('images/matontine/cotisations.png')} width="561" height="1280" alt="" fetchpriority="high" decoding="async" />
+            <img class="showcase-phone phone-front" src={url('images/matontine/rapport.png')} width="561" height="1280" alt="" decoding="async" />
+            <span class="showcase-note">Pensée pour<br />l’épargne collective.</span>
+          </div>
+          <div class="showcase-caption"><div><span class="project-status">Réalisation · Flutter</span><h2>MaTontine</h2><p>Suivre les cotisations. Partager le bilan.</p></div><span class="circle-arrow" aria-hidden="true">↗</span></div>
+        </a>
       </aside>
     </div>
     <div class="hero-bottom"><a href="#selection">EXPLORER <span aria-hidden="true">↓</span></a><span>Penser. Construire. Transmettre.</span></div>
   </section>
-  <section class="skills-strip" aria-label="Domaines de travail"><div class="container"><span class="skills-heading">MES DOMAINES</span><span class="skill-pill"><Icon name="code" />Flutter & Web</span><span class="skill-separator" aria-hidden="true">✳</span><span class="skill-pill skill-commerce"><Icon name="shop" />E-commerce</span><span class="skill-separator" aria-hidden="true">✳</span><span class="skill-pill skill-data"><Icon name="analytics" />Data & Sciences</span><span class="skill-separator" aria-hidden="true">✳</span><span class="skill-pill skill-heritage"><Icon name="landmark" />Patrimoine</span></div></section>
-  <section class="section container" id="selection">
-    <div class="section-heading" data-reveal><div><span class="eyebrow">01 / SÉLECTION</span><h2>Des problèmes réels.<br /><em>Des réponses concrètes.</em></h2></div><a class="text-link" href={url('travail/')}>Projets & prestations <span aria-hidden="true">↗</span></a></div>
-    <div class="projects-grid">{[projects[0], projects[1], projects[2], projects[3]].map(project => <ProjectCard project={project} />)}</div>
+  <section class="domain-nav container" aria-label="Explorer mes domaines">
+    <a href={url('travail/?domaine=code')}><span>01</span> Développement <Icon name="code" /></a>
+    <a href={url('travail/?domaine=data')}><span>02</span> Analyse de données <Icon name="analytics" /></a>
+    <a href={url('travail/?domaine=commerce')}><span>03</span> E-commerce <Icon name="shop" /></a>
+  </section>
+  <section class="section container" id="selection" aria-labelledby="selection-title">
+    <div class="section-heading" data-reveal><div><span class="eyebrow">01 / PROJETS & SAVOIR-FAIRE</span><h2 id="selection-title">Du travail concret.<br /><em>À découvrir de près.</em></h2></div><a class="text-link" href={url('travail/')}>Tous les projets & services <span aria-hidden="true">↗</span></a></div>
+    <div class="projects-grid home-selection">{selection.map(project => <ProjectCard project={project} />)}</div>
+    <p class="selection-note">D’autres pistes prennent forme, entre sciences, technologie et patrimoine. <a href={url('travail/')}>Explorer l’ensemble <span aria-hidden="true">↗</span></a></p>
+  </section>
+  <section class="services-section" aria-labelledby="services-title">
+    <div class="container">
+      <div class="section-heading" data-reveal><div><span class="eyebrow">02 / TRAVAILLONS ENSEMBLE</span><h2 id="services-title">Votre besoin.<br /><em>Une réponse adaptée.</em></h2></div><p class="section-intro">De la première question au livrable,<br />un accompagnement à votre échelle.</p></div>
+      <div class="service-list">{services.map(service => <a class="service-row" href={url(service.href)} data-reveal><span class="service-number">{service.number}</span><div><h3>{service.title}</h3><p>{service.text}</p><span class="service-detail">{service.detail}</span></div><span class="service-arrow" aria-hidden="true">↗</span></a>)}</div>
+    </div>
   </section>
   <section class="approach-section">
     <div class="container approach-grid">
-      <div data-reveal><span class="eyebrow">02 / LE FIL CONDUCTEUR</span><h2>Relier les mondes.<br /><em>Ouvrir des portes.</em></h2><a class="text-link" href={url('approche/')}>Découvrir mon approche <span aria-hidden="true">↗</span></a></div>
-      <div class="approach-copy" data-reveal><p class="large-copy">Une app de tontine. Un projet de laboratoire virtuel. Des statistiques plus accessibles.</p><p>Des sujets différents, une intention commune : construire des outils utiles, au plus près des personnes qui en ont besoin.</p><p>Mon ancrage béninois nourrit cette démarche. La technologie prend tout son sens quand elle rencontre un usage, une culture et des contraintes réelles.</p></div>
+      <div data-reveal><span class="eyebrow">03 / LE FIL CONDUCTEUR</span><h2>Relier les mondes.<br /><em>Garder ses racines.</em></h2><a class="text-link" href={url('approche/')}>Découvrir mon approche <span aria-hidden="true">↗</span></a></div>
+      <div class="approach-copy" data-reveal><p class="large-copy">Un socle scientifique.<br />L’envie de construire.<br />Un ancrage béninois.</p><p>De la technologie alimentaire au développement, je pars du même point : comprendre le besoin et construire une réponse utile, avec les moyens disponibles.</p><a class="text-link" href={url('formation/')}>Mon parcours <span aria-hidden="true">↗</span></a></div>
     </div>
   </section>
   <ContactBand />
